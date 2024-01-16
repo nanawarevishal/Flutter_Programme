@@ -48,6 +48,7 @@ class Assignment03State extends State<Assignment03>{
                     mainAxisAlignment: MainAxisAlignment.center,
                     children: [
                         Image.network(
+                            
                             imageList[selectedIndex!],
                             width: 300,
                             height: 300,
@@ -73,7 +74,8 @@ class Assignment03State extends State<Assignment03>{
                                   selectedIndex = 0;
                                 });
                             }, 
-                            child: const Text("Reset"))
+                            child: const Text("Reset")
+                        )
                     ],
                 ),
             ),
