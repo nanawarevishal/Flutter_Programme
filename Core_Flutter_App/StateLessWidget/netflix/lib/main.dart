@@ -16,33 +16,6 @@ class MainApp extends StatelessWidget {
             title: const Text("NETFLIX"),
             backgroundColor: Colors.red,
           ),
-          // body: Stack(
-          //   alignment:
-          //       Alignment.bottomRight, // Adjust the alignment as needed
-          //   children: [
-          //     Image.network(
-          //       "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTUU6nfJ_d8qrqV8-xmWjSVhXlDI73zFT5Dqg&usqp=CAU",
-          //       // width: double.infinity,
-          //       // height: double.infinity,
-          //       fit: BoxFit.cover,
-          //     ),
-          //     Container(
-          //       padding: const EdgeInsets.all(8.0),
-          //       margin: const EdgeInsets.all(16.0),
-          //       decoration: BoxDecoration(
-          //         color: Colors.blue,
-          //         borderRadius: BorderRadius.circular(8.0),
-          //       ),
-          //       child: const Text(
-          //         'Free',
-          //         style: TextStyle(
-          //           color: Colors.white,
-          //           fontWeight: FontWeight.bold,
-          //         ),
-          //       ),
-          //     ),
-          //   ],
-          // )
           body: ListView(
             scrollDirection: Axis.vertical,
             // child: Column(
@@ -329,7 +302,8 @@ class MainApp extends StatelessWidget {
                 ),
               )
             ],
-          )),
+          )
+        ),
     );
   }
 }
