@@ -10,14 +10,38 @@ class MainApp extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return  MaterialApp(
+      debugShowCheckedModeBanner: false,
       home: Scaffold(
-        body: SizedBox(
-          child: Container(
-            height: 100,
-            width: 100,
-            color: Colors.red,
+        appBar: AppBar(
+          title: const Text("Assignment-12"),
+          centerTitle: true,
+        ),
+        body: Container(
+          color: Colors.amber,
+          child: SizedBox(
+            height: double.infinity,
+            child: Row(
+             
+              children: [
+                Container(
+                  width: 100,
+                  height: 100,
+                  color: const Color.fromARGB(255, 255, 7, 210),
+                ),
+                Container(
+                  width: 100,
+                  height: 100,
+                  color: const Color.fromARGB(255, 8, 8, 8),
+                ),
+                Container(
+                  width: 100,
+                  height: 100,
+                  color: const Color.fromARGB(255, 7, 255, 98),
+                )
+              ],
+            ),
           ),
-        )
+        ),
       ),
     );
   }
