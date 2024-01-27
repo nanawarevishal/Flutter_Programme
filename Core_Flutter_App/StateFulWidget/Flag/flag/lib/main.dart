@@ -1,6 +1,5 @@
+import 'package:flag/Flag.dart';
 import 'package:flutter/material.dart';
-
-import 'HomePage.dart';
 
 void main() {
   runApp(const MainApp());
@@ -9,10 +8,14 @@ void main() {
 class MainApp extends StatelessWidget {
   const MainApp({super.key});
 
+  @override
   Widget build(BuildContext context) {
-    return const MaterialApp(
+    return const  MaterialApp(
       debugShowCheckedModeBanner: false,
-      home: MainPage(),
+      home: Flag(),
+    
     );
   }
 }
+
+
