@@ -9,6 +9,8 @@ environment:
 dependencies:
   flutter:
     sdk: flutter
+  get: ^4.6.6
+  http: ^1.2.0
   percent_indicator: ^4.2.3
 
 dev_dependencies:

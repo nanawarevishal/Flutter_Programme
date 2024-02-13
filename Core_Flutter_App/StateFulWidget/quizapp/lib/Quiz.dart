@@ -1,6 +1,11 @@
+import 'dart:async';
+
 import 'package:flutter/material.dart';
+import 'package:get/get.dart';
 import 'package:percent_indicator/percent_indicator.dart';
+import 'package:quizapp/Controller.dart';
 import 'package:quizapp/HomePage.dart';
+import 'package:quizapp/QuizModel.dart';
 
 class Quiz extends StatefulWidget {
   const Quiz({super.key});
@@ -12,8 +17,23 @@ class Quiz extends StatefulWidget {
 }
 
 class _QuizQuestions extends State<Quiz> {
+  CounterController controller = Get.put(CounterController());
+
+  List<QuizModel> ls = [];
+
+  @override
+  void initState() {
+    super.initState();
+    Timer.periodic(const Duration(seconds: 1), (timer) {
+      setState(() {
+        controller.decrementCounter();
+      });
+    });
+  }
+
   @override
   Widget build(BuildContext context) {
+    print("Build Called");
     return Scaffold(
       backgroundColor: const Color.fromARGB(255, 238, 238, 238),
       body: Container(
@@ -23,14 +43,14 @@ class _QuizQuestions extends State<Quiz> {
             Row(
               children: [
                 Card(
-                    color: const Color.fromARGB(255, 238, 238, 238),
+                  color: const Color.fromARGB(255, 238, 238, 238),
                   child: InkWell(
                     onTap: () {
-                        Navigator.push(
+                      Navigator.push(
                         context,
                         MaterialPageRoute(
                             builder: (context) => const MainPage()),
-                        );
+                      );
                     },
                     child: Container(
                       height: 32,
@@ -69,110 +89,124 @@ class _QuizQuestions extends State<Quiz> {
             const SizedBox(
               height: 30,
             ),
-            Stack(
-                alignment: Alignment.topCenter, children: [
-              Container(
-                  padding: const EdgeInsets.only(
-                      top: 75, left: 25, right: 25, bottom: 25),
-                  width: 300,
-                  height: 230,
-                  decoration: BoxDecoration(
-                      color: const Color.fromARGB(255, 165, 237, 254),
-                      borderRadius: BorderRadius.circular(20)),
-                  child: const Text(
-                    "Which is most popular Sports throughout the world?",
-                    style: TextStyle(fontSize: 20, fontWeight: FontWeight.bold),
-                  )),
-              CircularPercentIndicator(
-                radius: 30.0,
-                lineWidth: 8.0,
-                animation: true,
-                percent: 0.7,
-                center: const Text(
-                  "24",
+            Container(
+              child: Stack(
+                  alignment: Alignment.topCenter, children: [
+                Container(
+                    padding: const EdgeInsets.only(
+                        top: 75, left: 25, right: 25, bottom: 25),
+                    width: 300,
+                    height: 230,
+                    decoration: BoxDecoration(
+                        color: const Color.fromARGB(255, 165, 237, 254),
+                        borderRadius: BorderRadius.circular(20)),
+                    child: const Text(
+                      "Which is most popular Sports throughout the world?",
+                      style: TextStyle(fontSize: 20, fontWeight: FontWeight.bold),
+                    )),
+                CircularPercentIndicator(
+                  radius: 30.0,
+                  lineWidth: 8.0,
+                  animation: true,
+                  percent: 0.7,
+                  center: Obx(() => Text(controller.counter.value.toString())),
+                  circularStrokeCap: CircularStrokeCap.round,
+                  progressColor: Colors.red,
                 ),
-                circularStrokeCap: CircularStrokeCap.round,
-                progressColor: Colors.red,
-              ),
-            ]),
+              ]),
+            ),
             const SizedBox(
               height: 20,
             ),
             Container(
-              padding: const EdgeInsets.only(
-                top: 10,
-                left: 20
-              ),
+              padding: const EdgeInsets.only(top: 10, left: 20),
               width: 300,
               height: 50,
               decoration: BoxDecoration(
                   border: Border.all(color: Colors.black),
-                  borderRadius: BorderRadius.circular(20)
+                  borderRadius: BorderRadius.circular(20)),
+              child: const Text(
+                "VoleyBall",
+                style: TextStyle(fontSize: 18, fontWeight: FontWeight.bold),
               ),
-              child: const Text("VoleyBall",style: TextStyle(fontSize: 18,fontWeight: FontWeight.bold),),
             ),
             const SizedBox(
               height: 10,
             ),
             Container(
-              padding: const EdgeInsets.only(
-                top: 10,
-                left: 20
-              ),
+              padding: const EdgeInsets.only(top: 10, left: 20),
               width: 300,
               height: 50,
               decoration: BoxDecoration(
                   border: Border.all(color: Colors.black),
-                  borderRadius: BorderRadius.circular(20)
+                  borderRadius: BorderRadius.circular(20)),
+              child: const Text(
+                "BasketBall",
+                style: TextStyle(fontSize: 18, fontWeight: FontWeight.bold),
               ),
-              child: const Text("BasketBall",style: TextStyle(fontSize: 18,fontWeight: FontWeight.bold),),
             ),
             const SizedBox(
               height: 10,
             ),
             Container(
-              padding: const EdgeInsets.only(
-                top: 10,
-                left: 20
-              ),
+              padding: const EdgeInsets.only(top: 10, left: 20),
               width: 300,
               height: 50,
               decoration: BoxDecoration(
                   border: Border.all(color: Colors.black),
-                  borderRadius: BorderRadius.circular(20)
+                  borderRadius: BorderRadius.circular(20)),
+              child: const Text(
+                "Cricket",
+                style: TextStyle(fontSize: 18, fontWeight: FontWeight.bold),
               ),
-              child: const Text("Cricket",style: TextStyle(fontSize: 18,fontWeight: FontWeight.bold),),
             ),
             const SizedBox(
               height: 10,
             ),
             Container(
-              padding: const EdgeInsets.only(
-                top: 10,
-                left: 20
-              ),
+              padding: const EdgeInsets.only(top: 10, left: 20),
               width: 300,
               height: 50,
               decoration: BoxDecoration(
                   border: Border.all(color: Colors.black),
-                  borderRadius: BorderRadius.circular(20)
+                  borderRadius: BorderRadius.circular(20)),
+              child: const Text(
+                "FootBall",
+                style: TextStyle(fontSize: 18, fontWeight: FontWeight.bold),
               ),
-              child: const Text("FootBall",style: TextStyle(fontSize: 18,fontWeight: FontWeight.bold),),
             ),
-             const SizedBox(
+            const SizedBox(
               height: 20,
             ),
             Container(
-                alignment: Alignment.center,
-             
+              alignment: Alignment.center,
               width: 300,
               height: 50,
               decoration: BoxDecoration(
-                  border: Border.all(color: Colors.black),
-                  borderRadius: BorderRadius.circular(20),
-                  color: const Color.fromARGB(255, 1, 113, 141),
+                border: Border.all(color: Colors.black),
+                borderRadius: BorderRadius.circular(20),
+                color: const Color.fromARGB(255, 1, 113, 141),
               ),
-              child: const Text("Next",style: TextStyle(fontSize: 18,fontWeight: FontWeight.bold,color: Colors.white),),
+              child:ElevatedButton(
+                style: const ButtonStyle(
+                    backgroundColor:  MaterialStatePropertyAll( Color.fromARGB(255, 1, 113, 141))
+                ),
+                onPressed: (){
+                    setState(() {
+                      print("SetState");
+                    });
+                }, 
+              child: const Text("Next",style: TextStyle( fontSize: 18,
+                   fontWeight: FontWeight.bold,
+                     color: Colors.white),)
+            )
+            //   child: const Text(
+            //     "Next",
+            //     style: TextStyle(
+            //         fontSize: 18,
+            //         fontWeight: FontWeight.bold,
+            //         color: Colors.white),
+            //   ),
             ),
           ],
         ),

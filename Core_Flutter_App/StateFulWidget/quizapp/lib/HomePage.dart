@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:get/get.dart';
 import 'package:quizapp/LeaderBoardPage.dart';
 
 import 'Quiz.dart';
@@ -42,7 +43,7 @@ class _HomePage extends State<MainPage> {
                             ],
                           ),
                           const SizedBox(
-                            width: 82,
+                            width: 72,
                           ),
                           Image.network(
                             "https://icon2.cleanpng.com/20180920/att/kisspng-user-logo-information-service-design-5ba34f886b6700.1362345615374293844399.jpg",
@@ -155,89 +156,104 @@ class _HomePage extends State<MainPage> {
                       children: [
                         Column(
                           children: [
-                            Container(
-                              // margin: EdgeInsets.all(5),
-                              decoration: BoxDecoration(
-                                borderRadius: BorderRadius.circular(20),
-                                color: Colors.white,
-                              ),
-                              padding: const EdgeInsets.all(10),
-                              height: 150,
-                              width: 150,
-                              // color: Colors.amber,
-                              child: Column(
-                                children: [
-                                  Image.network(
-                                    "https://img.freepik.com/free-vector/basketball-ball-isolated_1284-42545.jpg",
-                                    height: 80,
-                                    width: 80,
-                                  ),
-                                  const Text(
-                                    "Sports",
-                                    style:
-                                        TextStyle(fontWeight: FontWeight.bold),
-                                  ),
-                                  const Text("50 Questions")
-                                ],
-                              ),
-                            ),
-                            const SizedBox(
-                              height: 10,
-                            ),
-                            Container(
-                              // margin: EdgeInsets.all(5),
-                              decoration: BoxDecoration(
-                                borderRadius: BorderRadius.circular(20),
-                                color: Colors.white,
-                              ),
-                              padding: const EdgeInsets.all(10),
-                              height: 200,
-                              width: 150,
-                              // color: Colors.amber,
-                              child: Column(
-                                children: [
-                                  Image.network(
-                                    "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRL3L3gD3p-UnMpg3oReJ1oYizPnBW9Azfqjg&usqp=CAU",
-                                    height: 130,
-                                    width: 80,
-                                  ),
-                                  const Text(
-                                    "Maths",
-                                    style:
-                                        TextStyle(fontWeight: FontWeight.bold),
-                                  ),
-                                  const Text("95 Questions")
-                                ],
+                            InkWell(
+                              onTap: () {
+                                Get.to(()=>const Quiz());
+                              },
+                              child: Container(
+                                // margin: EdgeInsets.all(5),
+                                decoration: BoxDecoration(
+                                  borderRadius: BorderRadius.circular(20),
+                                  color: Colors.white,
+                                ),
+                                padding: const EdgeInsets.all(10),
+                                height: 150,
+                                width: 150,
+                                // color: Colors.amber,
+                                child: Column(
+                                  children: [
+                                    Image.network(
+                                      "https://img.freepik.com/free-vector/basketball-ball-isolated_1284-42545.jpg",
+                                      height: 80,
+                                      width: 80,
+                                    ),
+                                    const Text(
+                                      "Sports",
+                                      style:
+                                          TextStyle(fontWeight: FontWeight.bold),
+                                    ),
+                                    const Text("50 Questions")
+                                  ],
+                                ),
                               ),
                             ),
                             const SizedBox(
                               height: 10,
                             ),
-                            Container(
-                              // margin: EdgeInsets.all(5),
-
-                              decoration: BoxDecoration(
-                                borderRadius: BorderRadius.circular(20),
-                                color: Colors.white,
+                            InkWell(
+                              onTap: (){
+                                Get.to(()=>const Quiz());
+                              },
+                              child: Container(
+                                // margin: EdgeInsets.all(5),
+                                decoration: BoxDecoration(
+                                  borderRadius: BorderRadius.circular(20),
+                                  color: Colors.white,
+                                ),
+                                padding: const EdgeInsets.all(10),
+                                height: 200,
+                                width: 150,
+                                // color: Colors.amber,
+                                child: Column(
+                                  children: [
+                                    Image.network(
+                                      "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRL3L3gD3p-UnMpg3oReJ1oYizPnBW9Azfqjg&usqp=CAU",
+                                      height: 130,
+                                      width: 80,
+                                    ),
+                                    const Text(
+                                      "Maths",
+                                      style:
+                                          TextStyle(fontWeight: FontWeight.bold),
+                                    ),
+                                    const Text("95 Questions")
+                                  ],
+                                ),
                               ),
-                              padding: const EdgeInsets.all(20),
-                              height: 170,
-                              width: 150,
-                              // color: Colors.amber,
-                              child: Column(
-                                children: [
-                                  Image.network(
-                                    "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRCSquOn48Pil2O5-oZs-YfBDcIAPWA04jD7_WrGlIj0SZuAKudXlEJfqe0O-FaTNdHwQA&usqp=CAU",
-                                    height: 80,
-                                    width: 100,
-                                  ),
-                                  const Text(
-                                    "Biology",
-                                    style:
-                                        TextStyle(fontWeight: FontWeight.bold),
-                                  ),
-                                  const Text("130 Questions")
-                                ],
+                            ),
+                            const SizedBox(
+                              height: 10,
+                            ),
+                            InkWell(
+                              onTap: (){
+                                Get.to(()=>const Quiz());
+                              },
+                              child: Container(
+                                // margin: EdgeInsets.all(5),
+                              
+                                decoration: BoxDecoration(
+                                  borderRadius: BorderRadius.circular(20),
+                                  color: Colors.white,
+                                ),
+                                padding: const EdgeInsets.all(20),
+                                height: 170,
+                                width: 150,
+                                // color: Colors.amber,
+                                child: Column(
+                                  children: [
+                                    Image.network(
+                                      "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRCSquOn48Pil2O5-oZs-YfBDcIAPWA04jD7_WrGlIj0SZuAKudXlEJfqe0O-FaTNdHwQA&usqp=CAU",
+                                      height: 80,
+                                      width: 100,
+                                    ),
+                                    const Text(
+                                      "Biology",
+                                      style:
+                                          TextStyle(fontWeight: FontWeight.bold),
+                                    ),
+                                    const Text("130 Questions")
+                                  ],
+                                ),
                               ),
                             ),
                             const SizedBox(
@@ -250,30 +266,37 @@ class _HomePage extends State<MainPage> {
                         ),
                         Column(
                           children: [
-                            Container(
-                              // margin: EdgeInsets.all(5),
-                              decoration: BoxDecoration(
-                                borderRadius: BorderRadius.circular(20),
-                                color: Colors.white,
-                              ),
-                              padding: const EdgeInsets.all(10),
-                              height: 150,
-                              width: 150,
-                              // color: Colors.amber,
-                              child: Column(
-                                children: [
-                                  Image.network(
-                                    "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTHEInwIFvolcjNtUIcvLADBjOcGkNdf9IBBUrMCl3Mx3lxlaECPtwzNF4HRzICzlXK4HE&usqp=CAU",
-                                    height: 80,
-                                    width: 80,
+                            Card(
+                              child: InkWell(
+                                onTap: () {
+                                  Get.to(()=>const Quiz());
+                                },
+                                child: Container(
+                                  // margin: EdgeInsets.all(5),
+                                  decoration: BoxDecoration(
+                                    borderRadius: BorderRadius.circular(20),
+                                    color: Colors.white,
                                   ),
-                                  const Text(
-                                    "Chemistry",
-                                    style:
-                                        TextStyle(fontWeight: FontWeight.bold),
+                                  padding: const EdgeInsets.all(10),
+                                  height: 150,
+                                  width: 150,
+                                  // color: Colors.amber,
+                                  child: Column(
+                                    children: [
+                                      Image.network(
+                                        "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTHEInwIFvolcjNtUIcvLADBjOcGkNdf9IBBUrMCl3Mx3lxlaECPtwzNF4HRzICzlXK4HE&usqp=CAU",
+                                        height: 80,
+                                        width: 80,
+                                      ),
+                                      const Text(
+                                        "Chemistry",
+                                        style:
+                                            TextStyle(fontWeight: FontWeight.bold),
+                                      ),
+                                      const Text("30 Questions")
+                                    ],
                                   ),
-                                  const Text("30 Questions")
-                                ],
+                                ),
                               ),
                             ),
                             const SizedBox(

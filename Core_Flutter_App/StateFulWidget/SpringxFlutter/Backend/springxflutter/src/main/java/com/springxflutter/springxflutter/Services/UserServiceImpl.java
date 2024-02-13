@@ -88,6 +88,7 @@ public class UserServiceImpl implements UserService {
 
         location.setCity(user.getLocation().getCity());
         location.setCountry(user.getLocation().getCountry());
+        location.setState(user.getLocation().getState());
         location.setPostCode(user.getLocation().getPostCode());
         
         Coordinates coordinates = new Coordinates();

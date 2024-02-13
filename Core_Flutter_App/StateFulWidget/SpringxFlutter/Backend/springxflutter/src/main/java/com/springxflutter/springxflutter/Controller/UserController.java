@@ -17,8 +17,7 @@ import com.springxflutter.springxflutter.Model.User;
 import com.springxflutter.springxflutter.Services.UserServiceImpl;
 
 @RestController
-@RequestMapping("/api/user/")
-@CrossOrigin(origins = "*")
+@CrossOrigin(origins = {"http://10.0.2.2:8080","*"})
 public class UserController {
 
     @Autowired
