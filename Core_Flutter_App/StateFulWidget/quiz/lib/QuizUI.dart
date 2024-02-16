@@ -82,6 +82,16 @@ class _QuizUIState extends State<QuizUI> {
     selectedAnswerIndex = -1;
   }
 
+    String getResultScreen(){
+      print(noCorrectAnswer);
+      if(noCorrectAnswer >=3){
+          return "https://t3.ftcdn.net/jpg/06/23/56/90/360_F_623569090_sIwfbSjZkml1ff2i9gxyBb7IiCOdf9bV.jpg";
+      }
+      else{
+        return "https://ih1.redbubble.net/image.2946949853.1802/st,small,507x507-pad,600x600,f8f8f8.jpg";
+      }
+  }
+
   Scaffold isQuestionScreen() {
     if (questionScreen) {
       return Scaffold(
@@ -180,7 +190,7 @@ class _QuizUIState extends State<QuizUI> {
         body: Column(
           children: [
             Image.network(
-              "https://img.freepik.com/free-vector/winner-background-first-place-competition_91128-1587.jpg",
+             getResultScreen(),
               height: 400,
               width: 340,
             ),

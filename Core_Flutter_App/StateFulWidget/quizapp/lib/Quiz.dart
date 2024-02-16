@@ -49,7 +49,7 @@ class _QuizQuestions extends State<Quiz> {
                       Navigator.push(
                         context,
                         MaterialPageRoute(
-                            builder: (context) => const MainPage()),
+                            builder: (context) => const HomePage()),
                       );
                     },
                     child: Container(

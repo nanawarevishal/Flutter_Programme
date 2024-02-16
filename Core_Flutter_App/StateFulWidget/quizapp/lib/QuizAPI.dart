@@ -59,7 +59,7 @@ class _QuizQuestions extends State<QuizAPI> {
                                   Navigator.push(
                                     context,
                                     MaterialPageRoute(
-                                        builder: (context) => const MainPage()),
+                                        builder: (context) => const HomePage()),
                                   );
                                 },
                                 child: Container(

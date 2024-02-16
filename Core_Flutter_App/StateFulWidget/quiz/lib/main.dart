@@ -7,20 +7,20 @@ void main() {
 }
 
 class MainApp extends StatelessWidget {
-  const MainApp({super.key});
-  @override
-  Widget build(BuildContext context) {
-    return const MaterialApp(
-      home: QuizUI(),
-      debugShowCheckedModeBanner: false,
-    );
-  }
+    const MainApp({super.key});
+    @override
+    Widget build(BuildContext context) {
+      return const MaterialApp(
+        home: QuizUI(),
+        debugShowCheckedModeBanner: false,
+      );
+    }
 }
 
 class QuizApp extends StatefulWidget {
-  const QuizApp({super.key});
-  @override
-  State createState() => _QuizAppState();
+	const QuizApp({super.key});
+	@override
+	State createState() => _QuizAppState();
 }
 
 class _QuizAppState extends State {
@@ -96,6 +96,16 @@ class _QuizAppState extends State {
               questionScreen = false;
             });
           }
+      }
+  }
+
+    String getResultScreen(){
+      print(noCorrectAnwer);
+      if(noCorrectAnwer >=3){
+          return "https://t3.ftcdn.net/jpg/06/23/56/90/360_F_623569090_sIwfbSjZkml1ff2i9gxyBb7IiCOdf9bV.jpg";
+      }
+      else{
+        return "https://ih1.redbubble.net/image.2946949853.1802/st,small,507x507-pad,600x600,f8f8f8.jpg";
       }
   }
 
@@ -291,9 +301,11 @@ class _QuizAppState extends State {
               height: 30,
             ),
 
-            Image.network("https://t3.ftcdn.net/jpg/06/23/56/90/360_F_623569090_sIwfbSjZkml1ff2i9gxyBb7IiCOdf9bV.jpg",
-            height: 400,
-            width: 340,),
+            Image.network(
+              getResultScreen(),
+              height: 400,
+              width: 340,
+            ),
             
             const SizedBox(height: 30,),
             const Text("Congratulations!!! ",style: TextStyle(

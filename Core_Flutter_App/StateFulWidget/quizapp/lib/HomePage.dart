@@ -1,11 +1,15 @@
+
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:quizapp/LeaderBoardPage.dart';
+import 'package:quizapp/Service/HomePageService.dart';
+import 'package:shared_preferences/shared_preferences.dart';
+
 
 import 'Quiz.dart';
 
-class MainPage extends StatefulWidget {
-  const MainPage({super.key});
+class HomePage extends StatefulWidget {
+  const HomePage({super.key});
 
   @override
   State<StatefulWidget> createState() {
@@ -13,7 +17,33 @@ class MainPage extends StatefulWidget {
   }
 }
 
-class _HomePage extends State<MainPage> {
+class _HomePage extends State<HomePage> {
+  bool _prefsInitialized = false;
+
+  late SharedPreferences prefs;
+
+  @override
+  void initState() {
+
+    super.initState();
+    initSharedPref();
+	
+  }
+
+ Future<void> initSharedPref() async {
+  try {
+    prefs = await SharedPreferences.getInstance();
+    setState(() {
+      _prefsInitialized = true;
+    });
+
+    // Call getUserData after prefs has been initialized
+    HomePageService.getUserData(prefsInitialized: _prefsInitialized, prefs: prefs);
+  } catch (e) {
+    print("Error initializing SharedPreferences: $e");
+  }
+}
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -76,12 +106,13 @@ class _HomePage extends State<MainPage> {
                               children: [
                                 InkWell(
                                   onTap: () {
-                                  Navigator.push(
-                                    context,
-                                    MaterialPageRoute(
-                                        builder: (context) => const LearderBoardPage()),
-                                  );
-                                },
+                                    Navigator.push(
+                                      context,
+                                      MaterialPageRoute(
+                                          builder: (context) =>
+                                              const LearderBoardPage()),
+                                    );
+                                  },
                                   child: Image.network(
                                       "https://t4.ftcdn.net/jpg/01/39/31/79/240_F_139317922_FAWtQJMMVOVvDeM2OVg0ofiwIvBUrrux.jpg"),
                                 ),
@@ -158,7 +189,7 @@ class _HomePage extends State<MainPage> {
                           children: [
                             InkWell(
                               onTap: () {
-                                Get.to(()=>const Quiz());
+                                Get.to(() => const Quiz());
                               },
                               child: Container(
                                 // margin: EdgeInsets.all(5),
@@ -179,8 +210,8 @@ class _HomePage extends State<MainPage> {
                                     ),
                                     const Text(
                                       "Sports",
-                                      style:
-                                          TextStyle(fontWeight: FontWeight.bold),
+                                      style: TextStyle(
+                                          fontWeight: FontWeight.bold),
                                     ),
                                     const Text("50 Questions")
                                   ],
@@ -191,8 +222,8 @@ class _HomePage extends State<MainPage> {
                               height: 10,
                             ),
                             InkWell(
-                              onTap: (){
-                                Get.to(()=>const Quiz());
+                              onTap: () {
+                                Get.to(() => const Quiz());
                               },
                               child: Container(
                                 // margin: EdgeInsets.all(5),
@@ -213,8 +244,8 @@ class _HomePage extends State<MainPage> {
                                     ),
                                     const Text(
                                       "Maths",
-                                      style:
-                                          TextStyle(fontWeight: FontWeight.bold),
+                                      style: TextStyle(
+                                          fontWeight: FontWeight.bold),
                                     ),
                                     const Text("95 Questions")
                                   ],
@@ -225,12 +256,12 @@ class _HomePage extends State<MainPage> {
                               height: 10,
                             ),
                             InkWell(
-                              onTap: (){
-                                Get.to(()=>const Quiz());
+                              onTap: () {
+                                Get.to(() => const Quiz());
                               },
                               child: Container(
                                 // margin: EdgeInsets.all(5),
-                              
+
                                 decoration: BoxDecoration(
                                   borderRadius: BorderRadius.circular(20),
                                   color: Colors.white,
@@ -248,8 +279,8 @@ class _HomePage extends State<MainPage> {
                                     ),
                                     const Text(
                                       "Biology",
-                                      style:
-                                          TextStyle(fontWeight: FontWeight.bold),
+                                      style: TextStyle(
+                                          fontWeight: FontWeight.bold),
                                     ),
                                     const Text("130 Questions")
                                   ],
@@ -269,7 +300,7 @@ class _HomePage extends State<MainPage> {
                             Card(
                               child: InkWell(
                                 onTap: () {
-                                  Get.to(()=>const Quiz());
+                                  Get.to(() => const Quiz());
                                 },
                                 child: Container(
                                   // margin: EdgeInsets.all(5),
@@ -290,8 +321,8 @@ class _HomePage extends State<MainPage> {
                                       ),
                                       const Text(
                                         "Chemistry",
-                                        style:
-                                            TextStyle(fontWeight: FontWeight.bold),
+                                        style: TextStyle(
+                                            fontWeight: FontWeight.bold),
                                       ),
                                       const Text("30 Questions")
                                     ],
@@ -331,8 +362,8 @@ class _HomePage extends State<MainPage> {
                                       ),
                                       const Text(
                                         "History",
-                                        style:
-                                            TextStyle(fontWeight: FontWeight.bold),
+                                        style: TextStyle(
+                                            fontWeight: FontWeight.bold),
                                       ),
                                       const Text("128 Questions")
                                     ],
@@ -346,7 +377,9 @@ class _HomePage extends State<MainPage> {
                             Card(
                               clipBehavior: Clip.hardEdge,
                               child: InkWell(
-                                splashColor: const Color.fromRGBO(33, 150, 243, 1).withAlpha(30),
+                                splashColor:
+                                    const Color.fromRGBO(33, 150, 243, 1)
+                                        .withAlpha(30),
                                 onTap: () {
                                   Navigator.push(
                                     context,

@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
-import 'package:quizapp/HomePage.dart';
+import 'package:quizapp/pages/registerPage.dart';
+import 'package:shared_preferences/shared_preferences.dart';
 
 
 void main() {
@@ -8,13 +9,16 @@ void main() {
 }
 
 class MainApp extends StatelessWidget {
+
+    // final SharedPreferences prefs;
+
     const MainApp({super.key});
 
     @override
     Widget build(BuildContext context) {
-      return const GetMaterialApp(
+      return  const GetMaterialApp(
         debugShowCheckedModeBanner: false,
-        home: MainPage(),
+        home: RegisterPage(),
       );
     }
 }
