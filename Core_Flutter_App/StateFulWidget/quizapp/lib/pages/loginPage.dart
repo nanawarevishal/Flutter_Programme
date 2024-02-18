@@ -4,7 +4,6 @@ import 'package:get/get.dart';
 import 'package:quizapp/Service/LoginService.dart';
 import 'package:quizapp/components/backGround.dart';
 import 'package:quizapp/pages/registerPage.dart';
-import 'package:shared_preferences/shared_preferences.dart';
 
 class LoginPage extends StatefulWidget{
     const LoginPage({super.key});
@@ -15,19 +14,13 @@ class LoginPage extends StatefulWidget{
 
 class _LoginPageState extends State {
 
-  late SharedPreferences prefs;
 
   final TextEditingController _emailController = TextEditingController();
   final TextEditingController _passwordController = TextEditingController();
 
   @override
   void initState() {
-    initSharedRefernces();
     super.initState();
-  }
-
-  void initSharedRefernces()async{
-    prefs = await SharedPreferences.getInstance();
   }
 
   @override
@@ -104,7 +97,7 @@ class _LoginPageState extends State {
                   child: TextButton(
                     onPressed: (){
                       
-                        LoginService.LoginServiceAPI(emailController: _emailController, passwordController: _passwordController, prefs: prefs);
+                        LoginService.LoginServiceAPI(emailController: _emailController, passwordController: _passwordController, );
                         _emailController.clear();
                         _passwordController.clear();
                     },

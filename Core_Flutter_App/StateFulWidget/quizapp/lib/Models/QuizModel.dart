@@ -13,7 +13,7 @@ class QuizModel {
     String content;
     Map<String, String> answers;
     int correctAnswer;
-    dynamic explanation;
+    String explanation;
 
     QuizModel({
         required this.id,

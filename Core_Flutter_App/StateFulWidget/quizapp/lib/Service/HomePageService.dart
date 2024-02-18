@@ -1,40 +1,33 @@
-
 import 'dart:convert';
 
+import 'package:get/get.dart';
 import 'package:http/http.dart' as http;
 import 'package:quizapp/Service/Config.dart';
-import 'package:shared_preferences/shared_preferences.dart';
+import 'package:quizapp/main.dart';
+import 'package:quizapp/pages/loginPage.dart';
 
 import '../Models/SingleUserModel.dart';
 
 class HomePageService {
 
-    
-    static Future<dynamic> getUserData({required bool prefsInitialized,required SharedPreferences prefs}) async {
-    // if (!prefsInitialized) {
-    //     print("not ini");
-    //   // Return an empty list if prefs are not initialized yet
-    //   return ;
-    // }
+    static Future<dynamic> getUserData() async {
+		final response = await http.get(
+		Uri.parse(getUser),
+		headers: {
+			'Content-Type': 'application/json',
+			'Accept': 'application/json',
+			'Authorization': 'Bearer ${MainApp.storage.read("token")}',
+		},
+		);
 
-    final response = await http.get(
-      Uri.parse(getUser),
-      headers: {
-        'Content-Type': 'application/json',
-        'Accept': 'application/json',
-        'Authorization': 'Bearer ${prefs.get('token')}',
-      },
-    );
+		if (response.statusCode == 200) {
+			var apiData = jsonDecode(response.body);
+			User user = User.fromJson(apiData);
 
-    if (response.statusCode == 200) {
-        var apiData = jsonDecode(response.body);
-
-        return User.fromJson(apiData);
-
-    } else {
-      print("Failed to fetch user data. Status code: ${response.statusCode}");
-    }
-
-
-    }
+			return user;
+		} else {
+			Get.to(()=>const LoginPage());
+			// print("Failed to fetch user data. Status code: ${response.statusCode}");
+		}
+  	}
 }

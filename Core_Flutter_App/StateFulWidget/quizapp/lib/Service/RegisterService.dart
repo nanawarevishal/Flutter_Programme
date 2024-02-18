@@ -6,13 +6,11 @@ import 'package:flutter/material.dart';
 import 'package:flutter/widgets.dart';
 import 'package:quizapp/Service/Config.dart';
 import 'package:http/http.dart' as http;
-import 'package:quizapp/pages/loginPage.dart';
-import 'package:shared_preferences/shared_preferences.dart';
 
 class RegisterService{
 
 
-    static void registerUser({required TextEditingController firstNameController,required emailController,required passwordController,required SharedPreferences prefs}) async{
+    static void registerUser({required TextEditingController firstNameController,required emailController,required passwordController}) async{
         if(emailController.text.isNotEmpty && passwordController.text.isNotEmpty && firstNameController.text.isNotEmpty){
 
         var regBody = {
@@ -29,8 +27,7 @@ class RegisterService{
         var jsonResponse = jsonDecode(response.body);
 
         if(jsonResponse['status'] == true){
-            prefs.clear();
-            prefs.setString("token", jsonResponse['token']);
+            return;
         
         }else{
             print("SomeThing Went Wrong");

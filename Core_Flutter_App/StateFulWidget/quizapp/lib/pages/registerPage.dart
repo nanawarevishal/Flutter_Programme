@@ -121,7 +121,7 @@ class _RegisterPageState extends State {
                         firstNameController: firstNameController,
                         emailController: emailController,
                         passwordController: passwordController,
-                        prefs: prefs);
+                        );
 
                         firstNameController.clear();
                         emailController.clear();

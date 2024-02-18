@@ -2,18 +2,16 @@
 
 import 'dart:convert';
 
-import 'package:awesome_snackbar_content/awesome_snackbar_content.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:http/http.dart' as http;
-import 'package:quizapp/HomePage.dart';
-import 'package:quizapp/Quiz.dart';
+import 'package:quizapp/pages/HomePage.dart';
 import 'package:quizapp/Service/Config.dart';
-import 'package:shared_preferences/shared_preferences.dart';
+import 'package:quizapp/main.dart';
 
 class LoginService{
 
-    static void LoginServiceAPI({required TextEditingController emailController,required TextEditingController passwordController,required SharedPreferences prefs})async{
+    static void LoginServiceAPI({required TextEditingController emailController,required TextEditingController passwordController,})async{
 
         if(emailController.text.isNotEmpty && passwordController.text.isNotEmpty){
 
@@ -30,7 +28,9 @@ class LoginService{
             var jsonResponse = jsonDecode(response.body);
 
             if(jsonResponse['status'] == true){
-                prefs.setString("token",jsonResponse['token']);
+                MainApp.storage.remove("token");
+                MainApp.storage.write("token", jsonResponse['token']);
+
                 Get.to(()=>const HomePage());
                
                 Get.snackbar(
