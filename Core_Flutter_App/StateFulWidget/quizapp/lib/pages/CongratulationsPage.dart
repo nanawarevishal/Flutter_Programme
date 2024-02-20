@@ -2,6 +2,8 @@ import 'dart:math';
 
 import 'package:confetti/confetti.dart';
 import 'package:flutter/material.dart';
+import 'package:get/get.dart';
+import 'package:quizapp/pages/HomePage.dart';
 
 class CongratulationsPage extends StatefulWidget {
   const CongratulationsPage({super.key});
@@ -218,7 +220,9 @@ class _CongratulationsPageState extends State {
                         ),
                         const SizedBox(height: 20,),
 
-                         TextButton(onPressed: (){}, 
+                         TextButton(onPressed: (){
+                            Get.to(()=>const HomePage());
+                         }, 
                          child: const Text("Home Page",style: TextStyle(
                             fontSize: 18,
                             fontWeight: FontWeight.w800

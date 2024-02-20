@@ -20,26 +20,20 @@ class Quiz extends StatefulWidget {
 
 class _QuizQuestions extends State<Quiz> {
 
-    late Timer _timer;
+    // late Timer _timer;
   QuizController quizController = Get.put(QuizController());
 
   List<QuizModel> quizList = [];
 
   @override
-  void initState() {
-    super.initState();
-    initQuizService();
-    startTimer();
-  }
-
-  void startTimer() {
-    _timer =  Timer.periodic(const Duration(seconds: 1), (timer) {
-    setState(() {
-        quizController.decrementCounter();
-    });
-      
-    });
-  }
+void initState() {
+  super.initState();
+  initQuizService();
+  WidgetsBinding.instance.addPostFrameCallback((_) {
+    quizController.reset(); // Reset the controller after the widget has finished building
+    quizController.startTimer();
+  });
+}
 
   Future<void> initQuizService() async {
     try {
@@ -52,6 +46,8 @@ class _QuizQuestions extends State<Quiz> {
       // print("Error initializing user data: $e");
     }
   }
+
+  int selectedAnswerIndex = 0;
 
   @override
   Widget build(BuildContext context) {
@@ -128,9 +124,9 @@ class _QuizQuestions extends State<Quiz> {
                   radius: 30.0,
                   lineWidth: 8.0,
                   animation: true,
-                  percent: quizController.counter.value/30,
+                  percent: quizController.secondsPassed.value/30,
                   center:
-                      Obx(() => Text(quizController.counter.value.toString())),
+                      Obx(() => Text(quizController.secondsPassed.value.toString())),
                   circularStrokeCap: CircularStrokeCap.round,
                   progressColor: Colors.red,
                 ),
@@ -261,6 +257,8 @@ class _QuizQuestions extends State<Quiz> {
                             ),
                           ),
                           onPressed: () {
+                                quizController.stopTimer();
+                                quizController.currentQuestionIndex.value = 0;
                                 Get.to(()=>const CongratulationsPage());
                           },
                           child: const Text(
