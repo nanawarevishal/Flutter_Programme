@@ -19,7 +19,7 @@ class MainApp extends StatelessWidget {
 
     @override
     Widget build(BuildContext context) {
-      return  GetMaterialApp(
+      return   GetMaterialApp(
         debugShowCheckedModeBanner: false,
         // home: CongratulationsPage(),
         home: storage.read('token')!='' ? const HomePage() : const LoginPage(),

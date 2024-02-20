@@ -1,9 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:quizapp/Models/CategoryModel.dart';
-import 'package:quizapp/Models/QuizModel.dart';
 import 'package:quizapp/Service/CategoryQuizService.dart';
-import 'package:quizapp/Service/QuizService.dart';
 import 'package:quizapp/main.dart';
 import 'package:quizapp/pages/Quiz.dart';
 
