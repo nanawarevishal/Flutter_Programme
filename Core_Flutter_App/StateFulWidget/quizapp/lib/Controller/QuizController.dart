@@ -2,6 +2,7 @@
 
 import 'package:get/get.dart';
 import 'package:quizapp/main.dart';
+import 'package:quizapp/pages/CongratulationsPage.dart';
 
 class QuizController extends GetxController{
 
@@ -11,7 +12,7 @@ class QuizController extends GetxController{
 
     void decrementCounter(){
         counter.value--;
-        if(counter ==0){
+        if(counter.value ==0){
             gotoNextQuestion(MainApp.storage.read("quizLisLength"));
         }
     }
@@ -25,8 +26,8 @@ class QuizController extends GetxController{
             incrementQueCounter();
             resetCounter();
         }
-        else{
-            counter = 30.obs;
+        else if(currentQuestionIndex.value +1 == queListLength){
+            Get.to(()=>const CongratulationsPage());
         }
     }
 

@@ -7,6 +7,7 @@ import 'package:quizapp/Controller/QuizController.dart';
 import 'package:quizapp/Models/QuizModel.dart';
 import 'package:quizapp/Service/QuizService.dart';
 import 'package:quizapp/main.dart';
+import 'package:quizapp/pages/CongratulationsPage.dart';
 
 class Quiz extends StatefulWidget {
   const Quiz({super.key});
@@ -18,6 +19,8 @@ class Quiz extends StatefulWidget {
 }
 
 class _QuizQuestions extends State<Quiz> {
+
+    late Timer _timer;
   QuizController quizController = Get.put(QuizController());
 
   List<QuizModel> quizList = [];
@@ -26,12 +29,11 @@ class _QuizQuestions extends State<Quiz> {
   void initState() {
     super.initState();
     initQuizService();
-     StartTime();
+    startTimer();
   }
 
-  void StartTime() {
-
-    Timer.periodic(const Duration(seconds: 1), (timer) {
+  void startTimer() {
+    _timer =  Timer.periodic(const Duration(seconds: 1), (timer) {
     setState(() {
         quizController.decrementCounter();
     });
@@ -192,7 +194,6 @@ class _QuizQuestions extends State<Quiz> {
                   () => Text(
                     quizList[quizController.currentQuestionIndex.value]
                         .answers["3"]!,
-                    // quizList[currentQuestionIndex].answers["1"]!,
                     style: const TextStyle(
                         fontSize: 14, fontWeight: FontWeight.w500),
                   ),
@@ -260,7 +261,7 @@ class _QuizQuestions extends State<Quiz> {
                             ),
                           ),
                           onPressed: () {
-                            
+                                Get.to(()=>const CongratulationsPage());
                           },
                           child: const Text(
                             "Submit",

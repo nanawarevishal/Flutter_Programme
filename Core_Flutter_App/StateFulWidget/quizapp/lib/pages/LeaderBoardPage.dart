@@ -40,7 +40,7 @@ class _LeaderBoardPage extends State<LearderBoardPage> {
       //   foregroundColor: const Color.fromARGB(255, 255, 119, 119),
       //     // title: const Text("data"),
       // ),
-      backgroundColor: Color.fromARGB(255, 225, 224, 224),
+      backgroundColor: const Color.fromARGB(255, 225, 224, 224),
       body: SingleChildScrollView(
         child: Container(
           margin: const EdgeInsets.all(10),
@@ -58,99 +58,97 @@ class _LeaderBoardPage extends State<LearderBoardPage> {
                   ),
                   child: Column(
                     children: [
-                      Container(
-                        child: Column(
-                          mainAxisAlignment: MainAxisAlignment.center,
-                          children: [
-                            Container(
-                              margin: const EdgeInsets.only(top: 60),
-                              child: const Text(
-                                "LeaderBoard",
-                                style: TextStyle(
-                                    color: Colors.white,
-                                    fontWeight: FontWeight.bold,
-                                    fontSize: 20),
-                              ),
+                      Column(
+                        mainAxisAlignment: MainAxisAlignment.center,
+                        children: [
+                          Container(
+                            margin: const EdgeInsets.only(top: 60),
+                            child: const Text(
+                              "LeaderBoard",
+                              style: TextStyle(
+                                  color: Colors.white,
+                                  fontWeight: FontWeight.bold,
+                                  fontSize: 20),
                             ),
-                            Row(
-                              mainAxisAlignment: MainAxisAlignment.center,
-                              children: [
-                                Container(
-                                  height: 50,
-                                  width: 300,
-                                  margin: const EdgeInsets.only(top: 20),
-                                  decoration: BoxDecoration(
-                                      borderRadius: BorderRadius.circular(10),
-                                      color: Colors.white),
-                                  child: Row(
-                                    children: [
-                                      Container(
-                                        height: 40,
-                                        width: 88,
-                                        padding: const EdgeInsets.all(7),
-                                        margin: const EdgeInsets.only(left: 7),
-                                        decoration: BoxDecoration(
-                                            borderRadius:
-                                                BorderRadius.circular(4),
-                                            color: Colors.redAccent),
-                                        child: const Text(
-                                          "All Time",
-                                          style: TextStyle(fontSize: 16),
-                                        ),
+                          ),
+                          Row(
+                            mainAxisAlignment: MainAxisAlignment.center,
+                            children: [
+                              Container(
+                                height: 50,
+                                width: 300,
+                                margin: const EdgeInsets.only(top: 20),
+                                decoration: BoxDecoration(
+                                    borderRadius: BorderRadius.circular(10),
+                                    color: Colors.white),
+                                child: Row(
+                                  children: [
+                                    Container(
+                                      height: 40,
+                                      width: 88,
+                                      padding: const EdgeInsets.all(7),
+                                      margin: const EdgeInsets.only(left: 7),
+                                      decoration: BoxDecoration(
+                                          borderRadius:
+                                              BorderRadius.circular(4),
+                                          color: Colors.redAccent),
+                                      child: const Text(
+                                        "All Time",
+                                        style: TextStyle(fontSize: 16),
                                       ),
-                                      const SizedBox(
-                                        width: 10,
+                                    ),
+                                    const SizedBox(
+                                      width: 10,
+                                    ),
+                                    Container(
+                                      height: 40,
+                                      width: 95,
+                                      
+                                        // padding: const EdgeInsets.all(7),
+                                      decoration: BoxDecoration(
+                                        borderRadius:
+                                            BorderRadius.circular(4),
+                                        color: Colors.redAccent
                                       ),
-                                      Container(
-                                        height: 40,
-                                        width: 95,
+                                      child:  ElevatedButton(
                                         
-                                          // padding: const EdgeInsets.all(7),
-                                        decoration: BoxDecoration(
-                                          borderRadius:
-                                              BorderRadius.circular(4),
-                                          color: Colors.redAccent
-                                        ),
-                                        child:  ElevatedButton(
+                                        style:const ButtonStyle(
                                           
-                                          style:const ButtonStyle(
-                                            
-                                            // minimumSize: MaterialStatePropertyAll(Size(40,88)),
-                                            elevation: MaterialStatePropertyAll(0),
-                                              backgroundColor: MaterialStatePropertyAll(Color.fromARGB(255, 252, 3, 3))
-                                          ),
-                                          onPressed: () {},
-                                          child:const Text(
-                                            "This Week",
-                                            
-                                            style: TextStyle(fontSize: 15,color: Colors.black),
-                                          ),
+                                          // minimumSize: MaterialStatePropertyAll(Size(40,88)),
+                                          elevation: MaterialStatePropertyAll(0),
+                                            backgroundColor: MaterialStatePropertyAll(Color.fromARGB(255, 252, 3, 3))
+                                        ),
+                                        onPressed: () {},
+                                        child:const Text(
+                                          "This Week",
+                                          
+                                          style: TextStyle(fontSize: 15,color: Colors.black),
                                         ),
                                       ),
-                                      const SizedBox(
-                                        width: 10,
+                                    ),
+                                    const SizedBox(
+                                      width: 10,
+                                    ),
+                                    Container(
+                                      height: 40,
+                                      width: 88,
+                                      padding: const EdgeInsets.all(7),
+                                      decoration: BoxDecoration(
+                                        borderRadius:
+                                            BorderRadius.circular(4),
+                                        // color: Colors.redAccent
                                       ),
-                                      Container(
-                                        height: 40,
-                                        width: 88,
-                                        padding: const EdgeInsets.all(7),
-                                        decoration: BoxDecoration(
-                                          borderRadius:
-                                              BorderRadius.circular(4),
-                                          // color: Colors.redAccent
-                                        ),
-                                        child: const Text(
-                                          "Month",
-                                          style: TextStyle(fontSize: 16),
-                                        ),
+                                      child: const Text(
+                                        "Month",
+                                        style: TextStyle(fontSize: 16),
                                       ),
-                                    ],
-                                  ),
-                                )
-                              ],
-                            )
-                          ],
-                        ),
+                                    ),
+                                  ],
+                                ),
+                              )
+                            ],
+                          )
+                        ],
                       ),
                       const SizedBox(
                         height: 40,

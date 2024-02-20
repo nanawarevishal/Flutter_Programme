@@ -220,7 +220,7 @@ class _CategoryQuizState extends State {
                            TextButton(
                               onPressed: () {
                                  MainApp.storage.remove("quizId");
-                                MainApp.storage.write("quizId", 2);
+                                 MainApp.storage.write("quizId", 2);
                                 Get.to(()=>const Quiz());
                               },
                               child:   Text(
