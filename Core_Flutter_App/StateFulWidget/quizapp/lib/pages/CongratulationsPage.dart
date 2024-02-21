@@ -1,9 +1,13 @@
+// ignore_for_file: empty_catches
+
 import 'dart:math';
 
 import 'package:confetti/confetti.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:quizapp/Controller/QuizController.dart';
+import 'package:quizapp/Models/RankersModel.dart';
+import 'package:quizapp/Service/QuizService.dart';
 import 'package:quizapp/pages/HomePage.dart';
 
 class CongratulationsPage extends StatefulWidget {
@@ -16,6 +20,8 @@ class CongratulationsPage extends StatefulWidget {
 class _CongratulationsPageState extends State {
   late ConfettiController _confettiController;
 
+  List<Rankers>rankers = [];
+
   QuizController quizController = Get.put(QuizController());
 
   var totalCorrectAns = 0;
@@ -27,8 +33,23 @@ class _CongratulationsPageState extends State {
     _confettiController =
         ConfettiController(duration: const Duration(seconds: 5));
     _confettiController.play();
+    rankers.clear();
+    initRankers();
     calculate();
     quizController.resetScore();
+  }
+
+  Future<void> initRankers()async{
+
+      try{
+          List<Rankers>ranker =await QuizService.getRankers();
+          setState(() {
+            rankers = ranker;
+          });
+
+      }catch(e){
+
+      }
   }
 
   void calculate() {
@@ -38,6 +59,13 @@ class _CongratulationsPageState extends State {
 
   @override
   Widget build(BuildContext context) {
+    if(rankers.isEmpty){
+        return const Scaffold(
+            body: Center(
+                child: CircularProgressIndicator(),
+            ),
+        );
+    }
     return Scaffold(
         body: Container(
       width: MediaQuery.of(context).size.width,
@@ -140,14 +168,14 @@ class _CongratulationsPageState extends State {
                           borderRadius:
                               const BorderRadius.all(Radius.circular(20)),
                         ),
-                        child: const Text("1"),
+                        child:  Text(rankers[0].ranks.toString()),
                       ),
                       const SizedBox(
                         width: 9,
                       ),
-                      const Text("Admino"),
+                       Text(rankers[0].firstName),
                       const Spacer(),
-                      const Text("258"),
+                       Text(rankers[0].score.toString()),
                     ],
                   ),
                 ),
@@ -174,14 +202,14 @@ class _CongratulationsPageState extends State {
                           borderRadius:
                               const BorderRadius.all(Radius.circular(20)),
                         ),
-                        child: const Text("2"),
+                        child:  Text(rankers[1].ranks.toString()),
                       ),
                       const SizedBox(
                         width: 9,
                       ),
-                      const Text("Goblin"),
+                       Text(rankers[1].firstName),
                       const Spacer(),
-                      const Text("240"),
+                      Text(rankers[1].score.toString()),
                     ],
                   ),
                 ),
@@ -208,14 +236,14 @@ class _CongratulationsPageState extends State {
                           borderRadius:
                               const BorderRadius.all(Radius.circular(20)),
                         ),
-                        child: const Text("3"),
+                        child:  Text(rankers[2].ranks.toString()),
                       ),
                       const SizedBox(
                         width: 9,
                       ),
-                      const Text("CluchGod"),
+                       Text(rankers[2].firstName),
                       const Spacer(),
-                      const Text("234"),
+                       Text(rankers[2].score.toString()),
                     ],
                   ),
                 ),

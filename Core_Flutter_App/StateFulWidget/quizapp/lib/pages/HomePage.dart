@@ -123,12 +123,12 @@ class _HomePage extends State<HomePage> {
 								),
 								 Column(
 								  children: [
-									Text(
+									const Text(
 									  "Ranking",
 									  style: TextStyle(color: Colors.red),
 									),
 									Text(
-									  "user!.ranks",
+									user!.ranks.toString(),
 									  style: TextStyle(color: Colors.blue),
 									)
 								  ],

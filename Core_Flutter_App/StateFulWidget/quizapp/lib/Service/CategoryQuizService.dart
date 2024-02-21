@@ -1,6 +1,7 @@
 
 import 'dart:convert';
 import 'package:quizapp/Models/CategoryModel.dart';
+import 'package:quizapp/Models/RankersModel.dart';
 import 'package:quizapp/main.dart';
 
 
@@ -10,6 +11,8 @@ import 'package:http/http.dart' as http;
 class CategoryQuizService{
 
     static List<CategoryModel>categoryQuizList = [];
+
+	
 
     static Future<List<CategoryModel>> getQuizCategory({required num categoryId})async{
 
@@ -33,4 +36,5 @@ class CategoryQuizService{
 
         return categoryQuizList;
 	}
+
 }

@@ -1,4 +1,8 @@
+// ignore_for_file: empty_catches
+
 import 'package:flutter/material.dart';
+import 'package:quizapp/Models/RankersModel.dart';
+import 'package:quizapp/Service/QuizService.dart';
 
 class LearderBoardPage extends StatefulWidget {
   const LearderBoardPage({super.key});
@@ -32,8 +36,38 @@ class CurveClipper extends CustomClipper<Path> {
 }
 
 class _LeaderBoardPage extends State<LearderBoardPage> {
+
+  List<Rankers>rankers = [];
+
+  @override
+  void initState(){
+    super.initState();
+    initRankers();  
+  }
+
+  Future<void>initRankers()async{
+
+      try {
+
+          List<Rankers>ranks = await QuizService.getRankers();
+          setState(() {
+              rankers = ranks;
+          });
+      } catch (e) {
+        
+      }
+  }
+
   @override
   Widget build(BuildContext context) {
+
+    if(rankers.isEmpty){
+      return const Scaffold(
+        body: Center(
+          child: CircularProgressIndicator(),
+        ),
+      );
+    }
     return Scaffold(
       // appBar: AppBar(
       //   backgroundColor: const Color.fromARGB(255, 255, 119, 119),
@@ -86,7 +120,7 @@ class _LeaderBoardPage extends State<LearderBoardPage> {
                                     Container(
                                       height: 40,
                                       width: 88,
-                                      padding: const EdgeInsets.all(7),
+                                      alignment: Alignment.center,
                                       margin: const EdgeInsets.only(left: 7),
                                       decoration: BoxDecoration(
                                           borderRadius:
@@ -98,45 +132,38 @@ class _LeaderBoardPage extends State<LearderBoardPage> {
                                       ),
                                     ),
                                     const SizedBox(
-                                      width: 10,
+                                      width: 7,
                                     ),
                                     Container(
                                       height: 40,
                                       width: 95,
+                                      alignment: Alignment.center,
                                       
-                                        // padding: const EdgeInsets.all(7),
                                       decoration: BoxDecoration(
                                         borderRadius:
                                             BorderRadius.circular(4),
                                         color: Colors.redAccent
                                       ),
-                                      child:  ElevatedButton(
-                                        
-                                        style:const ButtonStyle(
-                                          
-                                          // minimumSize: MaterialStatePropertyAll(Size(40,88)),
-                                          elevation: MaterialStatePropertyAll(0),
-                                            backgroundColor: MaterialStatePropertyAll(Color.fromARGB(255, 252, 3, 3))
-                                        ),
-                                        onPressed: () {},
+                                     
                                         child:const Text(
                                           "This Week",
                                           
                                           style: TextStyle(fontSize: 15,color: Colors.black),
                                         ),
                                       ),
-                                    ),
+                                    
                                     const SizedBox(
-                                      width: 10,
+                                      width: 6,
                                     ),
                                     Container(
                                       height: 40,
                                       width: 88,
-                                      padding: const EdgeInsets.all(7),
+                                      margin: const EdgeInsets.only(right: 2),
+                                      alignment: Alignment.center,
                                       decoration: BoxDecoration(
                                         borderRadius:
                                             BorderRadius.circular(4),
-                                        // color: Colors.redAccent
+                                        color: Colors.redAccent
                                       ),
                                       child: const Text(
                                         "Month",
@@ -167,26 +194,27 @@ class _LeaderBoardPage extends State<LearderBoardPage> {
                                     bottom: const Radius.elliptical(400, 200)),
                                 color:
                                     const Color.fromARGB(255, 252, 134, 124)),
-                            child: const Column(
+                            child:  Column(
                               children: [
-                                CircleAvatar(
+                                const CircleAvatar(
                                   maxRadius: 30,
                                   foregroundImage: NetworkImage(
                                       "https://img.freepik.com/premium-vector/young-man-face-avater-vector-illustration-design_968209-13.jpg"),
                                 ),
-                                SizedBox(
+                                const SizedBox(
                                   height: 6,
                                 ),
                                 Text(
-                                  "Alex Warner",
-                                  style: TextStyle(color: Colors.white),
+                                   " ${rankers[1].firstName}",
+                                    style: const TextStyle(color: Colors.white),
+                                  ),
+                                
+                                const SizedBox(
+                                  height: 0,
                                 ),
-                                SizedBox(
-                                  height: 6,
-                                ),
-                                Text(
-                                  "1523 Points",
-                                  style: TextStyle(color: Colors.white),
+                                 Text(
+                                  "${rankers[1].score.toString()} Points",
+                                  style: const TextStyle(color: Colors.white),
                                 )
                               ],
                             ),
@@ -201,26 +229,27 @@ class _LeaderBoardPage extends State<LearderBoardPage> {
                                     bottom: const Radius.elliptical(400, 200)),
                                 color:
                                     const Color.fromARGB(255, 252, 134, 124)),
-                            child: const Column(
+                            child:  Column(
                               children: [
-                                CircleAvatar(
+                                const CircleAvatar(
                                   maxRadius: 30,
                                   foregroundImage: NetworkImage(
                                       "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQHDHiJHyJ7y9lpOHQewoKqdq7LYZjSDgC6g5HnlqZW6fjiQeEaqAGq4Qe-CvXtbsCaFqg&usqp=CAU"),
                                 ),
-                                SizedBox(
+                                const SizedBox(
                                   height: 6,
                                 ),
-                                Text(
-                                  "John Devoe",
-                                  style: TextStyle(color: Colors.white),
+                                 Text(
+                                   " ${rankers[0].firstName}",
+                                    style: const TextStyle(color: Colors.white),
+                                  ),
+                                
+                                const SizedBox(
+                                  height: 0,
                                 ),
-                                SizedBox(
-                                  height: 6,
-                                ),
-                                Text(
-                                  "1890 Points",
-                                  style: TextStyle(color: Colors.white),
+                                 Text(
+                                  "${rankers[0].score.toString()} Points",
+                                  style: const TextStyle(color: Colors.white),
                                 )
                               ],
                             ),
@@ -235,28 +264,27 @@ class _LeaderBoardPage extends State<LearderBoardPage> {
                                     bottom: const Radius.elliptical(400, 200)),
                                 color:
                                     const Color.fromARGB(255, 252, 134, 124)),
-                            child: const Column(
+                            child:  Column(
                               children: [
-                                CircleAvatar(
+                                const CircleAvatar(
                                   maxRadius: 30,
                                   foregroundImage: NetworkImage(
                                       "https://i.pinimg.com/originals/a9/a2/15/a9a215cadc81daa174607b3930e40858.png"),
                                 ),
-                                SizedBox(
+                                const SizedBox(
                                   height: 6,
                                 ),
-                                Text(
-                                  "Nisha Kayh",
-                                  style: TextStyle(
-                                    color: Colors.white,
+                                 Text(
+                                   " ${rankers[2].firstName}",
+                                    style: const TextStyle(color: Colors.white),
                                   ),
+                                
+                                const SizedBox(
+                                  height: 0,
                                 ),
-                                SizedBox(
-                                  height: 6,
-                                ),
-                                Text(
-                                  "1634 Points",
-                                  style: TextStyle(color: Colors.white),
+                                 Text(
+                                  "${rankers[2].score.toString()} Points",
+                                  style: const TextStyle(color: Colors.white),
                                 )
                               ],
                             ),

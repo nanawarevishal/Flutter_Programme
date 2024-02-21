@@ -23,7 +23,6 @@ class HomePageService {
 		if (response.statusCode == 200) {
 			var apiData = jsonDecode(response.body);
 			User user = User.fromJson(apiData);
-
 			return user;
 		} else {
 			Get.to(()=>const LoginPage());

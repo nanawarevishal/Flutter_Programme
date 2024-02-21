@@ -1,14 +1,14 @@
 // To parse this JSON data, do
 //
-//     final User = UserFromJson(jsonString);
+//     final rankers = rankersFromJson(jsonString);
 
 import 'dart:convert';
 
-User UserFromJson(String str) => User.fromJson(json.decode(str));
+List<Rankers> rankersFromJson(String str) => List<Rankers>.from(json.decode(str).map((x) => Rankers.fromJson(x)));
 
-String UserToJson(User data) => json.encode(data.toJson());
+String rankersToJson(List<Rankers> data) => json.encode(List<dynamic>.from(data.map((x) => x.toJson())));
 
-class User {
+class Rankers {
     int id;
     String firstName;
     String lastName;
@@ -17,7 +17,7 @@ class User {
     int score;
     int ranks;
 
-    User({
+    Rankers({
         required this.id,
         required this.firstName,
         required this.lastName,
@@ -27,7 +27,7 @@ class User {
         required this.ranks,
     });
 
-    factory User.fromJson(Map<String, dynamic> json) => User(
+    factory Rankers.fromJson(Map<String, dynamic> json) => Rankers(
         id: json["id"],
         firstName: json["firstName"],
         lastName: json["lastName"],

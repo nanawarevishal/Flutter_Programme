@@ -3,6 +3,7 @@
 import 'dart:convert';
 import 'package:flutter/foundation.dart';
 import 'package:quizapp/Models/QuizModel.dart';
+import 'package:quizapp/Models/RankersModel.dart';
 import 'package:quizapp/Service/Config.dart';
 import 'package:quizapp/main.dart';
 import 'package:http/http.dart'as http;
@@ -11,6 +12,8 @@ import 'package:http/http.dart'as http;
 class  QuizService {
 
     static List<QuizModel>quizList = [];
+
+    static List<Rankers>rankers = [];
 
     static Future<List<QuizModel>> getQuestions({required int quizId})async{
         print("Service Called");
@@ -42,7 +45,6 @@ class  QuizService {
 			'Authorization': 'Bearer ${MainApp.storage.read("token")}',
 		},);
 
-
         if(response.statusCode == 200){
             if (kDebugMode) {
                 print("Score Updated");
@@ -55,4 +57,47 @@ class  QuizService {
         }
     }
 
+    static Future<void> updateRanks()async{
+
+        var response = await http.get(Uri.parse("$updateRanks"),
+        headers: {
+            'Content-Type': 'application/json',
+			'Accept': 'application/json',
+			'Authorization': 'Bearer ${MainApp.storage.read("token")}',
+        });
+
+         if(response.statusCode == 200){
+            if (kDebugMode) {
+                print("Score Updated");
+            }
+        }
+        else{
+            if (kDebugMode) {
+              print("Status Code is: ${response.statusCode}");
+            }
+        }
+    }
+
+	static Future<List<Rankers>> getRankers()async{
+		final response = await http.get(Uri.parse("$getRanker"),
+		headers: {
+			'Content-Type' : 'application/json',
+			'Accept' : 'application/json',
+			'Authorization' : 'Bearer ${MainApp.storage.read('token')}'
+		});
+
+		if(response.statusCode == 200){
+            rankers.clear();
+			var apiData = jsonDecode(response.body);
+			for(Map<String,dynamic> index in apiData){
+				rankers.add(Rankers.fromJson(index));
+			}
+		}
+
+		else{
+			print("Failed to fetch user data. Status code: ${response.statusCode}");
+		}
+
+		return rankers;
+	}
 }

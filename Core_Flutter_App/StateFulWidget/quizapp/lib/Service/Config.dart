@@ -6,3 +6,6 @@ const getCategoryQuiz = '${url}api/quiz/category-quiz?categoryId=';
 
 const getQuestionByCat = "${url}api/quiz/all-quizQue?quizId=";
 const updateScore = "${url}api/user/updateScore/";
+const updateRanks = "${url}api/users/ranking";
+const getRanker = "${url}api/user/rankers";
+
