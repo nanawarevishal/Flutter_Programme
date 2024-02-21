@@ -1,6 +1,7 @@
 
 
 import 'dart:convert';
+import 'package:flutter/foundation.dart';
 import 'package:quizapp/Models/QuizModel.dart';
 import 'package:quizapp/Service/Config.dart';
 import 'package:quizapp/main.dart';
@@ -31,6 +32,27 @@ class  QuizService {
             print("Status Code is: ${response.statusCode}");
         }
         return quizList;
+    }
+
+    static Future<void> updateUserScore({required num score})async {
+        var response =await http.get(Uri.parse("$updateScore$score"),
+         headers: {
+			'Content-Type': 'application/json',
+			'Accept': 'application/json',
+			'Authorization': 'Bearer ${MainApp.storage.read("token")}',
+		},);
+
+
+        if(response.statusCode == 200){
+            if (kDebugMode) {
+                print("Score Updated");
+            }
+        }
+        else{
+            if (kDebugMode) {
+              print("Status Code is: ${response.statusCode}");
+            }
+        }
     }
 
 }

@@ -34,18 +34,14 @@ class QuizController extends GetxController {
 
   void gotoNextQuestion(int queListLength) {
     if (currentQuestionIndex.value + 1 < queListLength) {
-      if (choiceAnsIndex.value ==
-          quizList[currentQuestionIndex.value].correctAnswer) {
-        score.value = score.value + 1;
-      }
+      // if (choiceAnsIndex.value ==
+      //     quizList[currentQuestionIndex.value].correctAnswer) {
+      //   score.value = score.value + 1;
+      // }
       choiceAnsIndex.value = 0;
       resetTimer();
       incrementQueCounter();
     } else if (currentQuestionIndex.value + 1 == queListLength) {
-      if (choiceAnsIndex.value ==
-          quizList[currentQuestionIndex.value].correctAnswer) {
-        score.value = score.value + 1;
-      }
       stopTimer();
       currentQuestionIndex.value = 0;
       Get.to(() => const CongratulationsPage());
@@ -71,6 +67,12 @@ class QuizController extends GetxController {
 
   resetScore() {
     score.value = 0;
+  }
+
+  updateScore(){
+    if (choiceAnsIndex.value == quizList[currentQuestionIndex.value].correctAnswer) {
+        score.value = score.value + 1;
+      }
   }
 
   Widget getSign(int buttonNo) {

@@ -331,6 +331,9 @@ class _QuizQuestions extends State<Quiz> {
                             ),
                             onPressed: () {
                               Future.microtask(() {
+                                if(quizController.choiceAnsIndex.value!=0){
+                                  quizController.updateScore();
+                                }
                                 quizController
                                     .gotoNextQuestion(quizController.quizList.length);
                               });
@@ -352,6 +355,10 @@ class _QuizQuestions extends State<Quiz> {
                               ),
                             ),
                             onPressed: () {
+                              if(quizController.choiceAnsIndex.value!=0){
+                                  quizController.updateScore();
+                              }
+                              QuizService.updateUserScore(score: quizController.score.value);
                               quizController.stopTimer();
                               quizController.choiceAnsIndex.value = 0;
                               quizController.currentQuestionIndex.value = 0;

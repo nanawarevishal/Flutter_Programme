@@ -78,8 +78,8 @@ class _HomePage extends State<HomePage> {
 						const SizedBox(
 						  width: 72,
 						),
-						Image.network(
-						  "https://icon2.cleanpng.com/20180920/att/kisspng-user-logo-information-service-design-5ba34f886b6700.1362345615374293844399.jpg",
+						Image.asset(
+						  "assets/catImages/admin.png",
 						  width: 60,
 						  height: 55,
 						  alignment: Alignment.topLeft,
@@ -115,20 +115,20 @@ class _HomePage extends State<HomePage> {
 											  const LearderBoardPage()),
 									);
 								  },
-								  child: Image.network(
-									  "https://t4.ftcdn.net/jpg/01/39/31/79/240_F_139317922_FAWtQJMMVOVvDeM2OVg0ofiwIvBUrrux.jpg"),
+								  child: Image.asset(
+									  "assets/catImages/trophy.png"),
 								),
 								const SizedBox(
 								  width: 10,
 								),
-								const Column(
+								 Column(
 								  children: [
 									Text(
 									  "Ranking",
 									  style: TextStyle(color: Colors.red),
 									),
 									Text(
-									  "348",
+									  "user!.ranks",
 									  style: TextStyle(color: Colors.blue),
 									)
 								  ],
@@ -148,8 +148,8 @@ class _HomePage extends State<HomePage> {
 							),
 							child: Row(
 							  children: [
-								Image.network(
-								  "https://static.vecteezy.com/system/resources/previews/005/276/070/original/dollar-coin-clipart-free-vector.jpg",
+								Image.asset(
+								  "assets/catImages/score.jpeg",
 								  filterQuality: FilterQuality.high,
 								),
 								Container(
@@ -208,8 +208,8 @@ class _HomePage extends State<HomePage> {
 								// color: Colors.amber,
 								child: Column(
 								  children: [
-									Image.network(
-									  "https://m.media-amazon.com/images/I/71jRZ6H183L.png",
+									Image.asset(
+									  "assets/catImages/programming.png",
 									  height: 80,
 									  width: 100,
 									  
@@ -242,8 +242,9 @@ class _HomePage extends State<HomePage> {
 								width: 150,
 								child: Column(
 								  children: [
-									Image.network(
-									  "https://img.freepik.com/free-vector/basketball-ball-isolated_1284-42545.jpg",
+									Image.asset(
+									 "assets/catImages/sports.jpg",
+									  
 									  height: 80,
 									  width: 80,
 									),
@@ -261,6 +262,7 @@ class _HomePage extends State<HomePage> {
 							  height: 10,
 							),
 							InkWell(
+
 							  onTap: () {
 								Get.to(() => const Quiz());
 							  },
@@ -275,8 +277,8 @@ class _HomePage extends State<HomePage> {
 								// color: Colors.amber,
 								child: Column(
 								  children: [
-									Image.network(
-									  "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRL3L3gD3p-UnMpg3oReJ1oYizPnBW9Azfqjg&usqp=CAU",
+									Image.asset(
+									  "assets/catImages/maths.jpeg",
 									  height: 80,
 									  width: 80,
 									),
@@ -317,8 +319,8 @@ class _HomePage extends State<HomePage> {
 								  // color: Colors.amber,
 								  child: Column(
 									children: [
-									  Image.network(
-										"https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTHEInwIFvolcjNtUIcvLADBjOcGkNdf9IBBUrMCl3Mx3lxlaECPtwzNF4HRzICzlXK4HE&usqp=CAU",
+									  Image.asset(
+										"assets/catImages/chemistry.png",
 										height: 80,
 										width: 80,
 									  ),
@@ -358,8 +360,8 @@ class _HomePage extends State<HomePage> {
 								  // color: Colors.amber,
 								  child: Column(
 									children: [
-									  Image.network(
-										"https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSBMvkCcYoTnot53XhZX3VS0x8UuVbsgb4t4VQW-nBa-qiukyRvd2VwVs4MNHtO9aesKZg&usqp=CAU",
+									  Image.asset(
+										"assets/catImages/History.png",
 										height: 80,
 										width: 80,
 									  ),
@@ -401,8 +403,8 @@ class _HomePage extends State<HomePage> {
 								  // color: Colors.amber,
 								  child: Column(
 									children: [
-									  Image.network(
-										"https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTXVugN3eh78idSVmH1mcGExN08uOZYV2XKIA&usqp=CAU",
+									  Image.asset(
+										"assets/catImages/geography.png",
 										height: 80,
 										width: 80,
 									  ),
