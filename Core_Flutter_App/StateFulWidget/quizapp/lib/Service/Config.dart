@@ -9,3 +9,4 @@ const updateScore = "${url}api/user/updateScore/";
 const updateRanks = "${url}api/users/ranking";
 const getRanker = "${url}api/user/rankers";
 
+const getAllRankers = "${url}api/users/ranking";

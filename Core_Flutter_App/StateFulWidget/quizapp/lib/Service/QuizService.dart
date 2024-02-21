@@ -79,6 +79,7 @@ class  QuizService {
     }
 
 	static Future<List<Rankers>> getRankers()async{
+
 		final response = await http.get(Uri.parse("$getRanker"),
 		headers: {
 			'Content-Type' : 'application/json',
@@ -89,11 +90,15 @@ class  QuizService {
 		if(response.statusCode == 200){
             rankers.clear();
 			var apiData = jsonDecode(response.body);
-			for(Map<String,dynamic> index in apiData){
-				rankers.add(Rankers.fromJson(index));
-			}
+            
+			for (Map<String, dynamic> index in apiData) {
+                try {
+                    rankers.add(Rankers.fromJson(index));
+                } catch (e) {
+                    print('Error adding Rankers object: $e');
+                }
+            }
 		}
-
 		else{
 			print("Failed to fetch user data. Status code: ${response.statusCode}");
 		}

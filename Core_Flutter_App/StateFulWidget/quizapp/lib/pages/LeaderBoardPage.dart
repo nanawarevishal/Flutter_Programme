@@ -48,7 +48,6 @@ class _LeaderBoardPage extends State<LearderBoardPage> {
   Future<void>initRankers()async{
 
       try {
-
           List<Rankers>ranks = await QuizService.getRankers();
           setState(() {
               rankers = ranks;
@@ -57,7 +56,6 @@ class _LeaderBoardPage extends State<LearderBoardPage> {
         
       }
   }
-
   @override
   Widget build(BuildContext context) {
 
@@ -298,307 +296,61 @@ class _LeaderBoardPage extends State<LearderBoardPage> {
               const SizedBox(
                 height: 20,
               ),
-              Container(
-                height: 60,
-                width: 450,
-                padding: const EdgeInsets.only(left: 20, right: 20),
-                decoration: BoxDecoration(
-                  borderRadius: BorderRadius.circular(20),
-                  color: Colors.white,
-                ),
-                child: const Row(
-                  children: [
-                    Text("4"),
-                    SizedBox(
-                      width: 20,
+              FutureBuilder(
+                future: QuizService.getRankers(),
+                builder: (context,AsyncSnapshot<List<Rankers>> snapshot){
+                    print(snapshot.data);
+                    if(!snapshot.hasData){
+                      return const CircularProgressIndicator();
+                    }
+                return ListView.builder(
+                  shrinkWrap: true,
+                  physics: const ScrollPhysics(),
+                  itemCount: rankers.length-3,
+                  itemBuilder: (BuildContext context,index){
+                  return  Container(
+                    height: 60,
+                    width: 450,
+                    
+                    padding: const EdgeInsets.only(left: 20, right: 20),
+                    margin: const EdgeInsets.only(bottom: 10),
+                    decoration: BoxDecoration(
+                      borderRadius: BorderRadius.circular(20),
+                      color: Colors.white,
                     ),
-                    CircleAvatar(
-                      maxRadius: 20,
-                      foregroundImage: NetworkImage(
-                          "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQ2j0_vnbTEYnELVY8tlXWYTqSjv91hZap8Naeq58C4wEJSUmodyaaMRhGqvkuyumO7T3g&usqp=CAU"),
+                    child:  Row(
+                      children: [
+                        Text(snapshot.data![index+3].ranks.toString()),
+                        const SizedBox(
+                          width: 20,
+                        ),
+                        const CircleAvatar(
+                          maxRadius: 20,
+                          foregroundImage: NetworkImage(
+                              "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQ2j0_vnbTEYnELVY8tlXWYTqSjv91hZap8Naeq58C4wEJSUmodyaaMRhGqvkuyumO7T3g&usqp=CAU"),
+                        ),
+                        const SizedBox(
+                          width: 20,
+                        ),
+                        Text(
+                          "${snapshot.data![index+3].firstName} ${snapshot.data![index+3].lastName}",
+                          style:const TextStyle(fontWeight: FontWeight.bold),
+                        ),
+                        const Spacer(),
+                         Text(
+                          snapshot.data![index+3].score.toString(),
+                          style:
+                              const TextStyle(color: Color.fromARGB(255, 252, 134, 124)),
+                        )
+                      ],
                     ),
-                    SizedBox(
-                      width: 20,
-                    ),
-                    Text(
-                      "Smith Carrol",
-                      style: TextStyle(fontWeight: FontWeight.bold),
-                    ),
-                    Spacer(),
-                    Text(
-                      "1520",
-                      style:
-                          TextStyle(color: Color.fromARGB(255, 252, 134, 124)),
-                    )
-                  ],
-                ),
+                  );
+                  }
+                 );
+                },
               ),
-              const SizedBox(
-                height: 10,
-              ),
-              Container(
-                height: 60,
-                width: 450,
-                padding: const EdgeInsets.only(left: 20, right: 20),
-                decoration: BoxDecoration(
-                  borderRadius: BorderRadius.circular(20),
-                  color: Colors.white,
-                ),
-                child: const Row(
-                  children: [
-                    Text("5"),
-                    SizedBox(
-                      width: 20,
-                    ),
-                    CircleAvatar(
-                      maxRadius: 20,
-                      foregroundImage: NetworkImage(
-                          "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRxbVQ_c2ebN1PcdbQtKJ3E4PeXu35mtTV0Rw&usqp=CAU"),
-                    ),
-                    SizedBox(
-                      width: 20,
-                    ),
-                    Text(
-                      "Gabriel Soares",
-                      style: TextStyle(fontWeight: FontWeight.bold),
-                    ),
-                    Spacer(),
-                    Text(
-                      "1497",
-                      style:
-                          TextStyle(color: Color.fromARGB(255, 252, 134, 124)),
-                    )
-                  ],
-                ),
-              ),
-              const SizedBox(
-                height: 10,
-              ),
-              Container(
-                height: 60,
-                width: 450,
-                padding: const EdgeInsets.only(left: 20, right: 20),
-                decoration: BoxDecoration(
-                  borderRadius: BorderRadius.circular(20),
-                  color: Colors.white,
-                ),
-                child: const Row(
-                  children: [
-                    Text("6"),
-                    SizedBox(
-                      width: 20,
-                    ),
-                    CircleAvatar(
-                      maxRadius: 20,
-                      foregroundImage: NetworkImage(
-                          "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQxpAau9O4-hzzbl0Ed3Mi-o4X9s6BCUdUObg&usqp=CAU"),
-                    ),
-                    SizedBox(
-                      width: 20,
-                    ),
-                    Text(
-                      "Yahiro yuhuko",
-                      style: TextStyle(fontWeight: FontWeight.bold),
-                    ),
-                    Spacer(),
-                    Text(
-                      "1478",
-                      style:
-                          TextStyle(color: Color.fromARGB(255, 252, 134, 124)),
-                    )
-                  ],
-                ),
-              ),
-              const SizedBox(
-                height: 10,
-              ),
-              Container(
-                height: 60,
-                width: 450,
-                padding: const EdgeInsets.only(left: 20, right: 20),
-                decoration: BoxDecoration(
-                  borderRadius: BorderRadius.circular(20),
-                  color: Colors.white,
-                ),
-                child: const Row(
-                  children: [
-                    Text("7"),
-                    SizedBox(
-                      width: 20,
-                    ),
-                    CircleAvatar(
-                      maxRadius: 20,
-                      foregroundImage: NetworkImage(
-                          "https://st2.depositphotos.com/8230070/12408/v/950/depositphotos_124084928-stock-illustration-cartoon-illustration-of-a-handsome.jpg"),
-                    ),
-                    SizedBox(
-                      width: 20,
-                    ),
-                    Text(
-                      "Joe Swares",
-                      style: TextStyle(fontWeight: FontWeight.bold),
-                    ),
-                    Spacer(),
-                    Text(
-                      "1465",
-                      style:
-                          TextStyle(color: Color.fromARGB(255, 252, 134, 124)),
-                    )
-                  ],
-                ),
-              ),
-              const SizedBox(
-                height: 10,
-              ),
-              Container(
-                height: 60,
-                width: 450,
-                padding: const EdgeInsets.only(left: 20, right: 20),
-                decoration: BoxDecoration(
-                  borderRadius: BorderRadius.circular(20),
-                  color: Colors.white,
-                ),
-                child: const Row(
-                  children: [
-                    Text("8"),
-                    SizedBox(
-                      width: 20,
-                    ),
-                    CircleAvatar(
-                      maxRadius: 20,
-                      foregroundImage: NetworkImage(
-                          "https://thumbs.dreamstime.com/z/student-avatar-illustration-user-profile-icon-youth-avatar-student-avatar-illustration-simple-cartoon-user-portrait-user-profile-276214170.jpg"),
-                    ),
-                    SizedBox(
-                      width: 20,
-                    ),
-                    Text(
-                      "Ben Ducket",
-                      style: TextStyle(fontWeight: FontWeight.bold),
-                    ),
-                    Spacer(),
-                    Text(
-                      "1458",
-                      style:
-                          TextStyle(color: Color.fromARGB(255, 252, 134, 124)),
-                    )
-                  ],
-                ),
-              ),
-              const SizedBox(
-                height: 10,
-              ),
-              Container(
-                height: 60,
-                width: 450,
-                padding: const EdgeInsets.only(left: 20, right: 20),
-                decoration: BoxDecoration(
-                  borderRadius: BorderRadius.circular(20),
-                  color: Colors.white,
-                ),
-                child: const Row(
-                  children: [
-                    Text("9"),
-                    SizedBox(
-                      width: 20,
-                    ),
-                    CircleAvatar(
-                      maxRadius: 20,
-                      foregroundImage: NetworkImage(
-                          "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRxbVQ_c2ebN1PcdbQtKJ3E4PeXu35mtTV0Rw&usqp=CAU"),
-                    ),
-                    SizedBox(
-                      width: 20,
-                    ),
-                    Text(
-                      "Gabriel Sommon",
-                      style: TextStyle(fontWeight: FontWeight.bold),
-                    ),
-                    Spacer(),
-                    Text(
-                      "1447",
-                      style:
-                          TextStyle(color: Color.fromARGB(255, 252, 134, 124)),
-                    )
-                  ],
-                ),
-              ),
-              const SizedBox(
-                height: 10,
-              ),
-              Container(
-                height: 60,
-                width: 450,
-                padding: const EdgeInsets.only(left: 20, right: 20),
-                decoration: BoxDecoration(
-                  borderRadius: BorderRadius.circular(20),
-                  color: Colors.white,
-                ),
-                child: const Row(
-                  children: [
-                    Text("10"),
-                    SizedBox(
-                      width: 20,
-                    ),
-                    CircleAvatar(
-                      maxRadius: 20,
-                      foregroundImage: NetworkImage(
-                          "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRxbVQ_c2ebN1PcdbQtKJ3E4PeXu35mtTV0Rw&usqp=CAU"),
-                    ),
-                    SizedBox(
-                      width: 20,
-                    ),
-                    Text(
-                      "Arohi Sharma",
-                      style: TextStyle(fontWeight: FontWeight.bold),
-                    ),
-                    Spacer(),
-                    Text(
-                      "1446",
-                      style:
-                          TextStyle(color: Color.fromARGB(255, 252, 134, 124)),
-                    )
-                  ],
-                ),
-              ),
-              const SizedBox(
-                height: 10,
-              ),
-              Container(
-                height: 60,
-                width: 450,
-                padding: const EdgeInsets.only(left: 20, right: 20),
-                decoration: BoxDecoration(
-                  borderRadius: BorderRadius.circular(20),
-                  color: Colors.white,
-                ),
-                child: const Row(
-                  children: [
-                    Text("11"),
-                    SizedBox(
-                      width: 20,
-                    ),
-                    CircleAvatar(
-                      maxRadius: 20,
-                      foregroundImage: NetworkImage(
-                          "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRxbVQ_c2ebN1PcdbQtKJ3E4PeXu35mtTV0Rw&usqp=CAU"),
-                    ),
-                    SizedBox(
-                      width: 20,
-                    ),
-                    Text(
-                      "Gabriel Soares",
-                      style: TextStyle(fontWeight: FontWeight.bold),
-                    ),
-                    Spacer(),
-                    Text(
-                      "1497",
-                      style:
-                          TextStyle(color: Color.fromARGB(255, 252, 134, 124)),
-                    )
-                  ],
-                ),
-              ),
+           
+              
             ],
           ),
         ),
