@@ -19,7 +19,7 @@ class HomePageService {
 			'Authorization': 'Bearer ${MainApp.storage.read("token")}',
 		},
 		);
-
+		
 		if (response.statusCode == 200) {
 			var apiData = jsonDecode(response.body);
 			User user = User.fromJson(apiData);

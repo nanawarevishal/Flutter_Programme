@@ -1,8 +1,10 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
+import 'package:quizapp/components/backGround.dart';
 import 'package:quizapp/pages/CongratulationsPage.dart';
 import 'package:quizapp/pages/HomePage.dart';
 import 'package:get_storage/get_storage.dart';
+import 'package:quizapp/pages/ProfilePage.dart';
 import 'package:quizapp/pages/loginPage.dart';
 
 
@@ -19,10 +21,9 @@ class MainApp extends StatelessWidget {
 
     @override
     Widget build(BuildContext context) {
-      return GetMaterialApp(
+      return MaterialApp(
         debugShowCheckedModeBanner: false,
-        //  home: CongratulationsPage(),
-          home: storage.read('token')!='' ? const HomePage() : const LoginPage(),
+        home: storage.read('token')!=null ? const HomePage() : const LoginPage(),
       );
     }
 }

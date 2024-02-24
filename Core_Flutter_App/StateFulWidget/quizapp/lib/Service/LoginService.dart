@@ -24,7 +24,7 @@ class LoginService{
             headers: {"Content-Type":"application/json"},
             body: jsonEncode(loginBody)
             );
-
+    
             var jsonResponse = jsonDecode(response.body);
 
             if(jsonResponse['status'] == true){
