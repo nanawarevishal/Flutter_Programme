@@ -1,5 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:font_awesome_icon_class/font_awesome_icon_class.dart';
+import 'package:quizapp/Models/SingleUserModel.dart';
+import 'package:quizapp/Service/HomePageService.dart';
+import 'package:quizapp/Service/ProfilePageService.dart';
 
 class ProfilePage extends StatefulWidget {
   const ProfilePage({super.key});
@@ -10,22 +13,50 @@ class ProfilePage extends StatefulWidget {
 
 class _ProfilePageState extends State {
 
+  User? user;
+
+  @override
+  void initState() {
+    print("here");
+    super.initState();
+    initUserData();
+  }
+
+  Future<void> initUserData() async {
+    try {
+      final userData = await HomePageService.getUserData();
+      print("user data: $userData");
+      setState(() {
+        user = userData;
+      });
+    } catch (e) {
+      // print("Error initializing user data: $e");
+    }
+  }
+
+
     final TextEditingController _nameController = TextEditingController();
     final FocusNode _nameFocusNode = FocusNode();
 
 
-    final TextEditingController _phoneController = TextEditingController();
-    final FocusNode _phoneFocusNode = FocusNode();
-
-
-    final TextEditingController _emailController = TextEditingController();
-    final FocusNode _emailFocusNode = FocusNode();
+    final TextEditingController _lastNameController = TextEditingController();
+    final FocusNode _lastNameNode = FocusNode();
 
 
   @override
   Widget build(BuildContext context) {
+
     var height = MediaQuery.of(context).size.height;
     var width = MediaQuery.of(context).size.width;
+
+    if(user == null){
+        return const Scaffold(
+            body: Center(
+              child: CircularProgressIndicator(),
+            ),
+        );
+    }
+  
     return Scaffold(
       backgroundColor: const Color.fromARGB(255, 219, 218, 218),
       body: SingleChildScrollView(
@@ -93,10 +124,10 @@ class _ProfilePageState extends State {
               child: Column(
                   crossAxisAlignment: CrossAxisAlignment.start,
                 children: [
-                  const Center(
+                   Center(
                     child: Text(
-                      "Admino",
-                      style: TextStyle(fontSize: 24, fontWeight: FontWeight.w800),
+                      user!.firstName,
+                      style: const TextStyle(fontSize: 24, fontWeight: FontWeight.w800),
                     ),
                   ),
                   const SizedBox(
@@ -151,7 +182,7 @@ class _ProfilePageState extends State {
                                     focusNode: _nameFocusNode,
                                   keyboardType: TextInputType.emailAddress,
                                     decoration: InputDecoration(
-                                      labelText: "NAME",
+                                      labelText: "FIRST NAME",
                                         border: OutlineInputBorder(
                                           borderRadius: BorderRadius.circular(20)
                                         )
@@ -167,7 +198,7 @@ class _ProfilePageState extends State {
                    Row(
                       children: [
                          const Icon(
-                              Icons.phone,
+                              Icons.person_outline_outlined,
                               size: 40,
                           ),
         
@@ -177,11 +208,11 @@ class _ProfilePageState extends State {
                             child: SizedBox(
                                   height: 45,
                                 child:  TextField(
-                                      controller: _phoneController,
-                                      focusNode: _phoneFocusNode,
-                                      keyboardType: TextInputType.phone,
+                                      controller: _lastNameController,
+                                      focusNode: _lastNameNode,
+                                      keyboardType: TextInputType.emailAddress,
                                     decoration: InputDecoration(
-                                      labelText: "PHONE",
+                                      labelText: "LAST NAME",
                                         border: OutlineInputBorder(
                                           borderRadius: BorderRadius.circular(20)
                                         )
@@ -208,11 +239,10 @@ class _ProfilePageState extends State {
                             child: SizedBox(
                                   height: 45,
                                 child:  TextField(
-                                    controller: _emailController,
-                                    focusNode: _emailFocusNode,
+                                  readOnly: true,
                                       keyboardType: TextInputType.emailAddress,
                                     decoration: InputDecoration(
-                                      labelText: "EMAIL",
+                                      labelText: user!.email,
                                         border: OutlineInputBorder(
                                           borderRadius: BorderRadius.circular(20)
                                         )
@@ -233,7 +263,7 @@ class _ProfilePageState extends State {
                             foregroundColor: MaterialStatePropertyAll(Colors.white)
                         ),
                         onPressed: (){
-                            
+                            ProfilePageService.updateProfile(_nameController, _lastNameController);
                         }, 
                         child: const Text("Submit")
                     ),

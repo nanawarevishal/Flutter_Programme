@@ -32,7 +32,7 @@ class LoginService{
                 MainApp.storage.write("token", jsonResponse['token']);
 
                 Get.to(()=>const HomePage());
-               
+                
                 Get.snackbar(
                     "Login Successfull....!",
                     "Solve the Quiz..!",

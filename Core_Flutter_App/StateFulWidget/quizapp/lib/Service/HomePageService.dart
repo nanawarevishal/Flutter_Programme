@@ -19,14 +19,15 @@ class HomePageService {
 			'Authorization': 'Bearer ${MainApp.storage.read("token")}',
 		},
 		);
-		
+
 		if (response.statusCode == 200) {
 			var apiData = jsonDecode(response.body);
 			User user = User.fromJson(apiData);
 			return user;
 		} else {
-			Get.to(()=>const LoginPage());
+			print(response.body);
 			// print("Failed to fetch user data. Status code: ${response.statusCode}");
+			Get.to(()=>const LoginPage());
 		}
   	}
 }
