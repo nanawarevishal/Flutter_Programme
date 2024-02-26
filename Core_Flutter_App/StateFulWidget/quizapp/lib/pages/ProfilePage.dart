@@ -1,8 +1,10 @@
 import 'package:flutter/material.dart';
 import 'package:font_awesome_icon_class/font_awesome_icon_class.dart';
+import 'package:get/get.dart';
 import 'package:quizapp/Models/SingleUserModel.dart';
 import 'package:quizapp/Service/HomePageService.dart';
 import 'package:quizapp/Service/ProfilePageService.dart';
+import 'package:quizapp/components/DialogBox.dart';
 
 class ProfilePage extends StatefulWidget {
   const ProfilePage({super.key});
@@ -17,7 +19,7 @@ class _ProfilePageState extends State {
 
   @override
   void initState() {
-    print("here");
+
     super.initState();
     initUserData();
   }
@@ -25,7 +27,6 @@ class _ProfilePageState extends State {
   Future<void> initUserData() async {
     try {
       final userData = await HomePageService.getUserData();
-      print("user data: $userData");
       setState(() {
         user = userData;
       });
@@ -111,6 +112,19 @@ class _ProfilePageState extends State {
                         fontWeight: FontWeight.w600), 
                     ),
                   ), 
+
+                   Positioned(
+                    right: 0,
+                    top: 29,
+                     child: IconButton(
+                        tooltip: "Logout",
+                      onPressed: (){
+                            DialogBox.showDialogBox(title: "Warning...!",message: "Are you sure want to LogOut?");
+                      },
+                      icon: const Icon(Icons.power_settings_new_sharp,
+                      color: Colors.red,),
+                                       ),
+                   )
                 ]),
               ),
             ),

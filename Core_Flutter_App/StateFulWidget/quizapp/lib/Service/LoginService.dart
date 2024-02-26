@@ -5,6 +5,7 @@ import 'dart:convert';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:http/http.dart' as http;
+import 'package:quizapp/components/SnackBar.dart';
 import 'package:quizapp/pages/HomePage.dart';
 import 'package:quizapp/Service/Config.dart';
 import 'package:quizapp/main.dart';
@@ -30,31 +31,19 @@ class LoginService{
             if(jsonResponse['status'] == true){
                 MainApp.storage.remove("token");
                 MainApp.storage.write("token", jsonResponse['token']);
-
+                SnacKBar.success(title: "Congratulations...!", message: "Login Successfully.\nYou may proceed");
                 Get.to(()=>const HomePage());
                 
-                Get.snackbar(
-                    "Login Successfull....!",
-                    "Solve the Quiz..!",
-                    backgroundColor: Colors.greenAccent
-                );
             }
 
-            else if(jsonResponse['status'] == 500){
-                Get.snackbar("Invalid email","Please enter the valid data",
-                backgroundColor: Colors.redAccent);
-            }
-            else if(jsonResponse['status'] == 403){
-                Get.snackbar("Invalid password","Please enter the valid data",
-                backgroundColor: Colors.redAccent);
-            }
             else{
+                SnacKBar.error(title: "Warning...!",message: jsonResponse['message']);
                 print(jsonResponse);
             }
 
         }
-        else{
-            
-        }
+       else{
+        SnacKBar.error(title: "Warning...!", message: "Some fields are Empty...!\nPlease fill all fields");
+     }
     }
 }

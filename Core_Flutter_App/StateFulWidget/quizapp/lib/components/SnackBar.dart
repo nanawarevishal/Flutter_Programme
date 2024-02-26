@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 
-class SnackBar {
+class SnacKBar {
 
     static void success({required String title,required String message}) {
         Get.snackbar(
@@ -50,7 +50,7 @@ class SnackBar {
             ),
         ),
       );
-  }
+    }
 
     static void error({required String title,required String message}) {
         Get.snackbar(

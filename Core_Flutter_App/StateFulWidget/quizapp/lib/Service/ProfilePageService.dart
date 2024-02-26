@@ -6,6 +6,7 @@ import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:http/http.dart' as http;
 import 'package:quizapp/Service/Config.dart';
+import 'package:quizapp/components/SnackBar.dart';
 import 'package:quizapp/main.dart';
 import 'package:quizapp/pages/HomePage.dart';
 
@@ -20,8 +21,6 @@ class ProfilePageService{
                 "lastName":lastNameController.text,
             };
 
-
-
             var response =await http.put(Uri.parse(updateUserRequest),
             headers: {
                 'Content-Type': 'application/json',
@@ -31,13 +30,9 @@ class ProfilePageService{
             );
 
             if(response.statusCode == 200){
-                 Get.to(()=>const HomePage());
+                Get.to(()=>const HomePage());
 
-                 Get.snackbar(
-                    "Successfull....!",
-                    "Profile updated",
-                    backgroundColor: Colors.greenAccent
-                );
+                SnacKBar.success(title: "Congratulations...!", message: "Profile Updated Successfully...!");
             }
             else{
                 print("Failed status Code: ${response.statusCode}");

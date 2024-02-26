@@ -14,12 +14,12 @@ class RegisterService {
     if (emailController.isNotEmpty && passwordController.isNotEmpty && firstNameController.isNotEmpty && lastNameController.isNotEmpty) {
 
         if(!firstNameController.isAlphabetOnly){
-            SnackBar.error(title: "Warning...!", message: "Invalid First Name format");
+            SnacKBar.error(title: "Warning...!", message: "Invalid First Name format");
             return;
         }
 
         if (!emailController.isEmail) {
-            SnackBar.error(title: "Warning...!", message: "Invalid email Id ");
+            SnacKBar.error(title: "Warning...!", message: "Invalid email Id ");
             return;
         }
       var regBody = {
@@ -36,17 +36,17 @@ class RegisterService {
       var jsonResponse = jsonDecode(response.body);
 
       if (jsonResponse['status'] == true) {
-        SnackBar.success(
+        SnacKBar.success(
             title: "Congratulations...!",
             message: "You Have Successfully Registered ");
         Get.to(() => const LoginPage());
       } else {
-        SnackBar.error(title: "Warning...!", message: jsonResponse['message']);
+        SnacKBar.error(title: "Warning...!", message: jsonResponse['message']);
       }
     }
 
     else{
-        SnackBar.error(title: "Warning...!", message: "Some fields are Empty...!\n Please fill all fields");
+        SnacKBar.error(title: "Warning...!", message: "Some fields are Empty...!\n Please fill all fields");
     }
   }
 }
