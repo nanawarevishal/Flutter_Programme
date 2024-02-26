@@ -1,37 +1,52 @@
-
-
 import 'dart:convert';
-
-import 'package:flutter/material.dart';
-import 'package:flutter/widgets.dart';
+import 'package:get/get.dart';
 import 'package:quizapp/Service/Config.dart';
 import 'package:http/http.dart' as http;
+import 'package:quizapp/components/SnackBar.dart';
+import 'package:quizapp/pages/loginPage.dart';
 
-class RegisterService{
+class RegisterService {
+  static void registerUser(
+      {required String firstNameController,
+      required String lastNameController,
+      required String emailController,
+      required String passwordController}) async {
+    if (emailController.isNotEmpty && passwordController.isNotEmpty && firstNameController.isNotEmpty && lastNameController.isNotEmpty) {
 
-
-    static void registerUser({required TextEditingController firstNameController,required emailController,required passwordController}) async{
-        if(emailController.text.isNotEmpty && passwordController.text.isNotEmpty && firstNameController.text.isNotEmpty){
-
-        var regBody = {
-            "firstName":firstNameController.text,
-            "email":emailController.text,
-            "password":passwordController.text
-        };
-
-        var response = await http.post(Uri.parse(register),
-        headers: {"Content-Type":"application/json"},
-        body: jsonEncode(regBody)
-        );
-
-        var jsonResponse = jsonDecode(response.body);
-
-        if(jsonResponse['status'] == true){
+        if(!firstNameController.isAlphabetOnly){
+            SnackBar.error(title: "Warning...!", message: "Invalid First Name format");
             return;
-        
-        }else{
-            print("SomeThing Went Wrong");
         }
+
+        if (!emailController.isEmail) {
+            SnackBar.error(title: "Warning...!", message: "Invalid email Id ");
+            return;
         }
+      var regBody = {
+        "firstName": firstNameController,
+        "lastName": lastNameController,
+        "email": emailController,
+        "password": passwordController
+      };
+
+      var response = await http.post(Uri.parse(register),
+          headers: {"Content-Type": "application/json"},
+          body: jsonEncode(regBody));
+
+      var jsonResponse = jsonDecode(response.body);
+
+      if (jsonResponse['status'] == true) {
+        SnackBar.success(
+            title: "Congratulations...!",
+            message: "You Have Successfully Registered ");
+        Get.to(() => const LoginPage());
+      } else {
+        SnackBar.error(title: "Warning...!", message: jsonResponse['message']);
+      }
     }
+
+    else{
+        SnackBar.error(title: "Warning...!", message: "Some fields are Empty...!\n Please fill all fields");
+    }
+  }
 }

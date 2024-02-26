@@ -3,33 +3,19 @@ import 'package:get/get.dart';
 import 'package:quizapp/Service/RegisterService.dart';
 import 'package:quizapp/components/backGround.dart';
 import 'package:quizapp/pages/loginPage.dart';
-import 'package:shared_preferences/shared_preferences.dart';
-
 
 class RegisterPage extends StatefulWidget{
     const RegisterPage({super.key});
-
+    @override
     State createState()=>_RegisterPageState();
 }
 
 class _RegisterPageState extends State {
 
   final TextEditingController firstNameController = TextEditingController();
-  // TextEditingController _lastNameController = TextEditingController();
+  final TextEditingController lastNameController = TextEditingController();
   final TextEditingController emailController = TextEditingController();
   final TextEditingController passwordController = TextEditingController();
-
-   late SharedPreferences prefs;
-
-  @override
-  void initState() {
-    super.initState();
-    initSharedRefernces();
-  }
-
-  void initSharedRefernces()async{
-      prefs = await SharedPreferences.getInstance();
-  }
 
   @override
   Widget build(BuildContext context) {
@@ -58,7 +44,7 @@ class _RegisterPageState extends State {
                TextField(
                 controller: firstNameController,
                 decoration: const InputDecoration(
-                  labelText: 'Name',
+                  labelText: 'First Name',
                   labelStyle: TextStyle(
                     fontWeight: FontWeight.bold,
                     fontSize: 12,
@@ -66,10 +52,11 @@ class _RegisterPageState extends State {
                 ),
               ),
               const SizedBox(height: 10),
-              const TextField(
-                keyboardType: TextInputType.number,
-                decoration: InputDecoration(
-                  labelText: 'Mobile Number',
+               TextField(
+                keyboardType: TextInputType.emailAddress,
+                controller: lastNameController,
+                decoration:const InputDecoration(
+                  labelText: 'Last Name',
                   labelStyle: TextStyle(
                     fontWeight: FontWeight.bold,
                     fontSize: 12,
@@ -118,22 +105,18 @@ class _RegisterPageState extends State {
                 child: GestureDetector(
                   onTap: (){
                     RegisterService.registerUser(
-                        firstNameController: firstNameController,
-                        emailController: emailController,
-                        passwordController: passwordController,
+                        firstNameController: firstNameController.text,
+                        lastNameController:lastNameController.text,
+                        emailController: emailController.text,
+                        passwordController: passwordController.text,
                         );
 
                         firstNameController.clear();
+                        lastNameController.clear();
                         emailController.clear();
                         passwordController.clear();
 
-                        Get.snackbar(
-                          "Register Successfull....!",
-                          "You may proceed now..!",
-                          backgroundColor: Colors.greenAccent
-                        );
-
-                      Get.to(()=>const LoginPage());
+                     
                   },
                   child: const Text('SIGN UP',
                       style: TextStyle(

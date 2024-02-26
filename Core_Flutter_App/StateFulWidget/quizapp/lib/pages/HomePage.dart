@@ -128,7 +128,7 @@ class _HomePage extends State<HomePage> {
                                     ),
                                     Text(
                                       user!.ranks.toString(),
-                                      style: TextStyle(color: Colors.blue),
+                                      style: const TextStyle(color: Colors.blue),
                                     )
                                   ],
                                 )
