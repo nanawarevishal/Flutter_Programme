@@ -2,11 +2,13 @@
 
 import 'dart:convert';
 import 'package:flutter/foundation.dart';
+import 'package:get/get.dart';
 import 'package:quizapp/Models/QuizModel.dart';
 import 'package:quizapp/Models/RankersModel.dart';
 import 'package:quizapp/Service/Config.dart';
 import 'package:quizapp/main.dart';
 import 'package:http/http.dart'as http;
+import 'package:quizapp/pages/CongratulationsPage.dart';
 
 
 class  QuizService {
@@ -16,7 +18,6 @@ class  QuizService {
     static List<Rankers>rankers = [];
 
     static Future<List<QuizModel>> getQuestions({required int quizId})async{
-        print("Service Called");
         var response =await http.get(Uri.parse("$getQuestionByCat$quizId"),
         headers: {
 			'Content-Type': 'application/json',
@@ -46,9 +47,7 @@ class  QuizService {
 		},);
 
         if(response.statusCode == 200){
-            if (kDebugMode) {
-                print("Score Updated");
-            }
+            Get.to(() => const CongratulationsPage());
         }
         else{
             if (kDebugMode) {
@@ -80,7 +79,7 @@ class  QuizService {
 
 	static Future<List<Rankers>> getRankers()async{
 
-		final response = await http.get(Uri.parse("$getRanker"),
+		final response = await http.get(Uri.parse(getRanker),
 		headers: {
 			'Content-Type' : 'application/json',
 			'Accept' : 'application/json',

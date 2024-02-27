@@ -7,7 +7,6 @@ import 'package:quizapp/Controller/QuizController.dart';
 import 'package:quizapp/Models/QuizModel.dart';
 import 'package:quizapp/Service/QuizService.dart';
 import 'package:quizapp/main.dart';
-import 'package:quizapp/pages/CongratulationsPage.dart';
 
 class Quiz extends StatefulWidget {
   const Quiz({super.key});
@@ -103,8 +102,8 @@ class _QuizQuestions extends State<Quiz> {
                   Container(
                       padding: const EdgeInsets.only(
                           top: 75, left: 25, right: 25, bottom: 25),
-                      width: 300,
-                      height: 230,
+                      // width: 300,
+                      // height: 230,
                       decoration: BoxDecoration(
                           color: const Color.fromARGB(255, 165, 237, 254),
                           borderRadius: BorderRadius.circular(20)),
@@ -358,11 +357,11 @@ class _QuizQuestions extends State<Quiz> {
                               if(quizController.choiceAnsIndex.value!=0){
                                   quizController.updateScore();
                               }
-                              QuizService.updateUserScore(score: quizController.score.value);
                               quizController.stopTimer();
                               quizController.choiceAnsIndex.value = 0;
                               quizController.currentQuestionIndex.value = 0;
-                              Get.to(() => const CongratulationsPage());
+                              QuizService.updateUserScore(score: quizController.score.value);
+                             
                             },
                             child: const Text(
                               "Submit",

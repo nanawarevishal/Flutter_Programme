@@ -7,7 +7,6 @@ import 'package:quizapp/Service/HomePageService.dart';
 import 'package:quizapp/pages/CategoryQuizPage.dart';
 import 'package:quizapp/pages/ProfilePage.dart';
 
-import 'Quiz.dart';
 
 class HomePage extends StatefulWidget {
   const HomePage({super.key});
@@ -62,7 +61,7 @@ class _HomePage extends State<HomePage> {
                           crossAxisAlignment: CrossAxisAlignment.start,
                           children: [
                             Text(
-                              user!.firstName,
+                              user!.firstName.capitalizeFirst!,
                               style: const TextStyle(
                                   fontSize: 32, fontWeight: FontWeight.bold),
                             ),

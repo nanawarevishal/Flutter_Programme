@@ -7,6 +7,8 @@ import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:quizapp/Controller/QuizController.dart';
 import 'package:quizapp/Models/RankersModel.dart';
+import 'package:quizapp/Models/SingleUserModel.dart';
+import 'package:quizapp/Service/HomePageService.dart';
 import 'package:quizapp/Service/QuizService.dart';
 import 'package:quizapp/pages/HomePage.dart';
 
@@ -18,6 +20,8 @@ class CongratulationsPage extends StatefulWidget {
 }
 
 class _CongratulationsPageState extends State {
+
+  User? user;
   late ConfettiController _confettiController;
 
   List<Rankers>rankers = [];
@@ -35,6 +39,7 @@ class _CongratulationsPageState extends State {
     _confettiController.play();
     rankers.clear();
     initRankers();
+    initUserData();
     calculate();
     quizController.resetScore();
   }
@@ -50,6 +55,17 @@ class _CongratulationsPageState extends State {
       }catch(e){
 
       }
+  }
+
+    Future<void> initUserData() async {
+    try {
+      final userData = await HomePageService.getUserData();
+      setState(() {
+        user = userData;
+      });
+    } catch (e) {
+      // print("Error initializing user data: $e");
+    }
   }
 
   void calculate() {
@@ -98,9 +114,9 @@ class _CongratulationsPageState extends State {
                 const SizedBox(
                   height: 8,
                 ),
-                const Text(
-                  "Hi Admino",
-                  style: TextStyle(fontSize: 18, fontWeight: FontWeight.w700),
+                 Text(
+                  "Hi ${user!.firstName.capitalizeFirst}",
+                  style: const TextStyle(fontSize: 18, fontWeight: FontWeight.w700),
                 ),
                 const SizedBox(
                   height: 4,
@@ -112,9 +128,9 @@ class _CongratulationsPageState extends State {
                 const SizedBox(
                   height: 2,
                 ),
-                const Text("You have got the 10th place in 254"),
+                Text("You have got the ${user!.ranks} place in ${rankers.length}"),
                 const SizedBox(
-                  height: 20,
+                  height: 10,
                 ),
                 Row(
                   mainAxisAlignment: MainAxisAlignment.center,
@@ -141,19 +157,31 @@ class _CongratulationsPageState extends State {
                   ],
                 ),
                 const SizedBox(
-                  height: 4,
+                  height: 14,
                 ),
-                const Stack(children: [
-                  Divider(
-                    color: Colors.black,
+                Stack(
+                  children: [
+                  Positioned(
+                    
+                    child: Image.asset("assets/images/LeaderImg.png",
+                    width: 300,
+                    height: 40,),
                   ),
+                
+                  const Positioned(
+                      left: 120,
+                      top: 7,
+                      child:  Text("Rankers",style: TextStyle(color: Colors.white,fontSize: 18,fontWeight: FontWeight.w900),))
+                
                 ]),
+
+                const SizedBox(height: 15,),
                 Container(
                   height: 40,
                   width: MediaQuery.of(context).size.width * .80,
                   padding: const EdgeInsets.only(left: 5, right: 10),
                   decoration: BoxDecoration(
-                      color: const Color.fromARGB(255, 201, 200, 200),
+                      color: const Color.fromARGB(255, 174, 244, 201),
                       borderRadius: BorderRadius.circular(8)),
                   child: Row(
                     children: [
@@ -168,14 +196,24 @@ class _CongratulationsPageState extends State {
                           borderRadius:
                               const BorderRadius.all(Radius.circular(20)),
                         ),
-                        child:  Text(rankers[0].ranks.toString()),
+                        child:  Text(rankers[0].ranks.toString(),
+                        style: const TextStyle(
+                        fontSize: 18,
+                        fontWeight: FontWeight.w600
+                       ),),
                       ),
                       const SizedBox(
                         width: 9,
                       ),
-                       Text(rankers[0].firstName),
+                       Text(rankers[0].firstName.capitalizeFirst!,style: const TextStyle(
+                        fontSize: 18,
+                        fontWeight: FontWeight.w600
+                       ),),
                       const Spacer(),
-                       Text(rankers[0].score.toString()),
+                       Text(rankers[0].score.toString(),style: const TextStyle(
+                        fontSize: 18,
+                        fontWeight: FontWeight.w600
+                       ),),
                     ],
                   ),
                 ),
@@ -187,7 +225,7 @@ class _CongratulationsPageState extends State {
                   width: MediaQuery.of(context).size.width * .80,
                   padding: const EdgeInsets.only(left: 5, right: 10),
                   decoration: BoxDecoration(
-                      color: const Color.fromARGB(255, 201, 200, 200),
+                      color: const Color.fromARGB(255, 174, 244, 201),
                       borderRadius: BorderRadius.circular(8)),
                   child: Row(
                     children: [
@@ -202,14 +240,23 @@ class _CongratulationsPageState extends State {
                           borderRadius:
                               const BorderRadius.all(Radius.circular(20)),
                         ),
-                        child:  Text(rankers[1].ranks.toString()),
+                        child:  Text(rankers[1].ranks.toString(),style: const TextStyle(
+                        fontSize: 18,
+                        fontWeight: FontWeight.w600
+                       ),),
                       ),
                       const SizedBox(
                         width: 9,
                       ),
-                       Text(rankers[1].firstName),
+                       Text(rankers[1].firstName.capitalizeFirst!,style: const TextStyle(
+                        fontSize: 18,
+                        fontWeight: FontWeight.w600
+                       ),),
                       const Spacer(),
-                      Text(rankers[1].score.toString()),
+                      Text(rankers[1].score.toString(),style: const TextStyle(
+                        fontSize: 18,
+                        fontWeight: FontWeight.w600
+                       ),),
                     ],
                   ),
                 ),
@@ -221,7 +268,7 @@ class _CongratulationsPageState extends State {
                   width: MediaQuery.of(context).size.width * .80,
                   padding: const EdgeInsets.only(left: 5, right: 10),
                   decoration: BoxDecoration(
-                      color: const Color.fromARGB(255, 201, 200, 200),
+                      color: const Color.fromARGB(255, 174, 244, 201),
                       borderRadius: BorderRadius.circular(8)),
                   child: Row(
                     children: [
@@ -236,14 +283,23 @@ class _CongratulationsPageState extends State {
                           borderRadius:
                               const BorderRadius.all(Radius.circular(20)),
                         ),
-                        child:  Text(rankers[2].ranks.toString()),
+                        child:  Text(rankers[2].ranks.toString(),style: const TextStyle(
+                        fontSize: 18,
+                        fontWeight: FontWeight.w600
+                       ),),
                       ),
                       const SizedBox(
                         width: 9,
                       ),
-                       Text(rankers[2].firstName),
+                       Text(rankers[2].firstName.capitalizeFirst!,style: const TextStyle(
+                        fontSize: 18,
+                        fontWeight: FontWeight.w600
+                       ),),
                       const Spacer(),
-                       Text(rankers[2].score.toString()),
+                       Text(rankers[2].score.toString(),style: const TextStyle(
+                        fontSize: 18,
+                        fontWeight: FontWeight.w600
+                       ),),
                     ],
                   ),
                 ),
