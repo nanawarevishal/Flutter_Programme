@@ -104,7 +104,7 @@ class _CategoryQuizState extends State {
                     bottom: 0,
                     left: 10,
                     child: Container(
-                      height: 150,
+                      height: 165,
                       width: 300,
                       decoration: const BoxDecoration(
                           gradient: LinearGradient(stops: [
@@ -140,7 +140,7 @@ class _CategoryQuizState extends State {
                             TextButton(
                               onPressed: () {
                                 MainApp.storage.remove("quizId");
-                                MainApp.storage.write("quizId", 1);
+                                MainApp.storage.write("quizId", _categoryQuizList[0].id);
                                 Get.to(()=>const Quiz());
                                 
                               },
@@ -217,8 +217,8 @@ class _CategoryQuizState extends State {
                             ),
                            TextButton(
                               onPressed: () {
-                                 MainApp.storage.remove("quizId");
-                                 MainApp.storage.write("quizId", 2);
+                                MainApp.storage.remove("quizId");
+                                MainApp.storage.write("quizId",  _categoryQuizList[1].id);
                                 Get.to(()=>const Quiz());
                               },
                               child:   Text(

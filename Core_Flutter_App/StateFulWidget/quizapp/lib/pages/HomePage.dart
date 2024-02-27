@@ -228,7 +228,10 @@ class _HomePage extends State<HomePage> {
                             ),
                             InkWell(
                               onTap: () {
-                                Get.to(() => const Quiz());
+                                MainApp.storage.remove("categoryId");
+                                MainApp.storage.write("categoryId", 3);
+                                Get.to(() => const CategoryQuiz());
+                                
                               },
                               child: Container(
                                 // margin: EdgeInsets.all(5),
@@ -261,7 +264,9 @@ class _HomePage extends State<HomePage> {
                             ),
                             InkWell(
                               onTap: () {
-                                Get.to(() => const Quiz());
+                                MainApp.storage.remove("categoryId");
+                                MainApp.storage.write("categoryId", 4);
+                                Get.to(() => const CategoryQuiz());
                               },
                               child: Container(
                                 decoration: BoxDecoration(
@@ -275,12 +280,12 @@ class _HomePage extends State<HomePage> {
                                 child: Column(
                                   children: [
                                     Image.asset(
-                                      "assets/catImages/maths.jpeg",
-                                      height: 80,
+                                      "assets/catImages/eSports.jpeg",
+                                      height: 90,
                                       width: 80,
                                     ),
                                     const Text(
-                                      "Maths",
+                                      "E-Sports",
                                       style: TextStyle(
                                           fontWeight: FontWeight.bold),
                                     ),
@@ -302,7 +307,9 @@ class _HomePage extends State<HomePage> {
                             Card(
                               child: InkWell(
                                 onTap: () {
-                                  Get.to(() => const Quiz());
+                                  MainApp.storage.remove("categoryId");
+                                  MainApp.storage.write("categoryId", 52);
+                                  Get.to(() => const CategoryQuiz());
                                 },
                                 child: Container(
                                   // margin: EdgeInsets.all(5),
@@ -339,11 +346,9 @@ class _HomePage extends State<HomePage> {
                               child: InkWell(
                                 splashColor: Colors.blue.withAlpha(30),
                                 onTap: () {
-                                  Navigator.push(
-                                    context,
-                                    MaterialPageRoute(
-                                        builder: (context) => const Quiz()),
-                                  );
+                                  MainApp.storage.remove("categoryId");
+                                  MainApp.storage.write("categoryId", 5);
+                                  Get.to(() => const CategoryQuiz());
                                 },
                                 child: Container(
                                   // margin: EdgeInsets.all(5),
@@ -383,11 +388,9 @@ class _HomePage extends State<HomePage> {
                                     const Color.fromRGBO(33, 150, 243, 1)
                                         .withAlpha(30),
                                 onTap: () {
-                                  Navigator.push(
-                                    context,
-                                    MaterialPageRoute(
-                                        builder: (context) => const Quiz()),
-                                  );
+                                  MainApp.storage.remove("categoryId");
+                                  MainApp.storage.write("categoryId", 53);
+                                  Get.to(() => const CategoryQuiz());
                                 },
                                 child: Container(
                                   decoration: BoxDecoration(

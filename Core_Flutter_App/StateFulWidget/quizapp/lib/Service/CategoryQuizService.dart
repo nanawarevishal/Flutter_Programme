@@ -28,11 +28,11 @@ class CategoryQuizService{
             for(Map<String,dynamic> index in apiData){
                 categoryQuizList.add(CategoryModel.fromJson(index));
             }
+			
 		}
 		else{
 			print("Failed to fetch user data. Status code: ${response.statusCode}");
 		}
-
         return categoryQuizList;
 	}
 
