@@ -13,7 +13,7 @@ class SnacKBar {
             padding: const EdgeInsets.all(8),
             decoration: BoxDecoration(
             color: Colors.white,
-            border: Border.all(color: Colors.black),
+            border: Border.all(color: const Color.fromARGB(255, 160, 160, 160)),
             borderRadius: BorderRadius.circular(20),
             ),
             child:  Row(
@@ -62,7 +62,7 @@ class SnacKBar {
             padding: const EdgeInsets.all(8),
             decoration: BoxDecoration(
             color: Colors.white,
-            border: Border.all(color: Colors.black),
+            border: Border.all(color: const Color.fromARGB(255, 190, 190, 190)),
             borderRadius: BorderRadius.circular(20),
             ),
             child:  Row(

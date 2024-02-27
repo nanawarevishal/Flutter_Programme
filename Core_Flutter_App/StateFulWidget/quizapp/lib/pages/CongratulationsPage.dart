@@ -91,8 +91,8 @@ class _CongratulationsPageState extends State {
                 color: Colors.white, borderRadius: BorderRadius.circular(10)),
             child: Column(
               children: [
-                Image.network(
-                  "https://img.freepik.com/free-vector/realistic-illustration-gold-cup-with-red-ribbon-winner-leader-champion_1262-13474.jpg?size=626&ext=jpg&ga=GA1.1.178471154.1706163078&semt=ais",
+                Image.asset(
+                  "assets/images/trophy.png",
                   height: 200,
                 ),
                 const SizedBox(

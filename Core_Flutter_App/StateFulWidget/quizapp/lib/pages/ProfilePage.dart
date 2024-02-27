@@ -1,6 +1,5 @@
 import 'package:flutter/material.dart';
 import 'package:font_awesome_icon_class/font_awesome_icon_class.dart';
-import 'package:get/get.dart';
 import 'package:quizapp/Models/SingleUserModel.dart';
 import 'package:quizapp/Service/HomePageService.dart';
 import 'package:quizapp/Service/ProfilePageService.dart';

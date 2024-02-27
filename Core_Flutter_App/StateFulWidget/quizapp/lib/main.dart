@@ -21,6 +21,7 @@ class MainApp extends StatelessWidget {
     Widget build(BuildContext context) {
       return GetMaterialApp(
         debugShowCheckedModeBanner: false,
+        // home:CongratulationsPage()
         home: storage.read('token')!=null ? const HomePage() : const LoginPage(),
       );
     }
