@@ -3,6 +3,7 @@ import 'package:get/get.dart';
 import 'package:quizapp/Models/CategoryModel.dart';
 import 'package:quizapp/Service/CategoryQuizService.dart';
 import 'package:quizapp/main.dart';
+import 'package:quizapp/pages/ProfilePage.dart';
 import 'package:quizapp/pages/Quiz.dart';
 
 class CategoryQuiz extends StatefulWidget {
@@ -77,7 +78,9 @@ class _CategoryQuizState extends State {
                       borderRadius: BorderRadius.circular(40)),
                   child: IconButton(
                       color: Colors.blue,
-                      onPressed: () {},
+                      onPressed: () {
+                        Get.to(()=>const ProfilePage());
+                      },
                       icon: const Icon(Icons.person_3_rounded)),
                 ),
               ],
@@ -94,7 +97,7 @@ class _CategoryQuizState extends State {
             const SizedBox(
               height: 20,
             ),
-            (_categoryQuizList.length>=1)?
+            (_categoryQuizList.isNotEmpty)?
             SizedBox(
               height: 200,
               width: 400,
@@ -134,7 +137,7 @@ class _CategoryQuizState extends State {
                               height: 6,
                             ),
                             const Text(
-                              "level 1",
+                              "Level 1",
                               style: TextStyle(color: Colors.white),
                             ),
                             TextButton(
@@ -157,15 +160,15 @@ class _CategoryQuizState extends State {
                       ),
                     ),
                   ),
-                  Positioned(
-                    right: 20,
-                    top: -10,
-                    child: SizedBox(
-                        width: 100,
-                        height: 150,
-                        child: Image.network(
-                            "https://m.media-amazon.com/images/I/71diomIboWL.png")),
-                  )
+                //   Positioned(
+                //     right: 20,
+                //     top: -10,
+                //     child: SizedBox(
+                //         width: 100,
+                //         height: 150,
+                //         child: Image.network(
+                //             _categoryQuizList[0].catImage)),
+                //   )
                 ],
               ),
             ):Container(),
@@ -234,15 +237,20 @@ class _CategoryQuizState extends State {
                       ),
                     ),
                   ),
-                  Positioned(
-                    right: 20,
-                    top: -10,
-                    child: SizedBox(
-                        width: 100,
-                        height: 150,
-                        child: Image.network(
-                            "https://upload.wikimedia.org/wikipedia/commons/thumb/c/c3/Python-logo-notext.svg/800px-Python-logo-notext.svg.png")),
-                  )
+                //   Positioned(
+                //     right: 20,
+                //     top: -10,
+                //     child: Container(
+                //         width: 100,
+                //         height: 150,
+                //         decoration: BoxDecoration(
+                //             borderRadius: BorderRadius.circular(10)
+                //         ),
+                //         child: Image.network(
+                //             _categoryQuizList[1].catImage,
+                //             fit: BoxFit.scaleDown,)
+                //             ),
+                //   )
                 ],
               ),
             ):Container(),

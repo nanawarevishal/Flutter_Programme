@@ -4,20 +4,22 @@
 
 import 'dart:convert';
 
-List<CategoryModel> categoryModelFromJson(String str) => List<CategoryModel>.from(json.decode(str).map((x) => CategoryModel.fromJson(x)));
+CategoryModel categoryModelFromJson(String str) => CategoryModel.fromJson(json.decode(str));
 
-String categoryModelToJson(List<CategoryModel> data) => json.encode(List<dynamic>.from(data.map((x) => x.toJson())));
+String categoryModelToJson(CategoryModel data) => json.encode(data.toJson());
 
 class CategoryModel {
     int id;
     String title;
     Category category;
+    String catImage;
     List<Question> questions;
 
     CategoryModel({
         required this.id,
         required this.title,
         required this.category,
+        required this.catImage,
         required this.questions,
     });
 
@@ -25,6 +27,7 @@ class CategoryModel {
         id: json["id"],
         title: json["title"],
         category: Category.fromJson(json["category"]),
+        catImage: json["catImage"],
         questions: List<Question>.from(json["questions"].map((x) => Question.fromJson(x))),
     );
 
@@ -32,6 +35,7 @@ class CategoryModel {
         "id": id,
         "title": title,
         "category": category.toJson(),
+        "catImage": catImage,
         "questions": List<dynamic>.from(questions.map((x) => x.toJson())),
     };
 }
