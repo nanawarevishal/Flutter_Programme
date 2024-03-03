@@ -1,4 +1,4 @@
-const url = 'http://192.168.0.117:8080/';
+const url = 'http://192.168.0.108:8080/';
 const register = "${url}auth/signup";
 const login = '${url}auth/signin';
 const  getUser = '${url}api/user';

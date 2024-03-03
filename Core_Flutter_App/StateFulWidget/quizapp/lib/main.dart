@@ -23,6 +23,6 @@ class MainApp extends StatelessWidget {
         debugShowCheckedModeBanner: false,
         // home:CongratulationsPage()
         home: storage.read('token')!=null ? const HomePage() : const LoginPage(),
-      );
+        );
     }
 }

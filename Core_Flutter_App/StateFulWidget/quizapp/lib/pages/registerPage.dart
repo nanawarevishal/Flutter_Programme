@@ -89,40 +89,55 @@ class _RegisterPageState extends State {
                 ),
               ),
               const SizedBox(height: 50),
-              Container(
-                alignment: Alignment.center,
-                height: 50.0,
-                width: size.width / 1.5,
-                decoration: BoxDecoration(
-                  borderRadius: BorderRadius.circular(80.0),
-                  gradient: const LinearGradient(
-                    colors: [
-                      Color.fromARGB(255, 255, 136, 34),
-                      Color.fromARGB(255, 255, 177, 41)
-                    ],
+              GestureDetector(
+                onTap: (){
+                     RegisterService.registerUser(
+                          firstNameController: firstNameController.text,
+                          lastNameController:lastNameController.text,
+                          emailController: emailController.text,
+                          passwordController: passwordController.text,
+                          );
+                
+                          firstNameController.clear();
+                          lastNameController.clear();
+                          emailController.clear();
+                          passwordController.clear();
+                },
+                child: Container(
+                  alignment: Alignment.center,
+                  height: 50.0,
+                  width: size.width / 1.5,
+                  decoration: BoxDecoration(
+                    borderRadius: BorderRadius.circular(80.0),
+                    gradient: const LinearGradient(
+                      colors: [
+                        Color.fromARGB(255, 255, 136, 34),
+                        Color.fromARGB(255, 255, 177, 41)
+                      ],
+                    ),
                   ),
-                ),
-                child: GestureDetector(
-                  onTap: (){
-                    RegisterService.registerUser(
-                        firstNameController: firstNameController.text,
-                        lastNameController:lastNameController.text,
-                        emailController: emailController.text,
-                        passwordController: passwordController.text,
-                        );
-
-                        firstNameController.clear();
-                        lastNameController.clear();
-                        emailController.clear();
-                        passwordController.clear();
-
-                     
-                  },
-                  child: const Text('SIGN UP',
-                      style: TextStyle(
-                        color: Colors.white,
-                        fontWeight: FontWeight.bold,
-                      )),
+                  child: GestureDetector(
+                    onTap: (){
+                      RegisterService.registerUser(
+                          firstNameController: firstNameController.text,
+                          lastNameController:lastNameController.text,
+                          emailController: emailController.text,
+                          passwordController: passwordController.text,
+                          );
+                
+                          firstNameController.clear();
+                          lastNameController.clear();
+                          emailController.clear();
+                          passwordController.clear();
+                
+                       
+                    },
+                    child: const Text('SIGN UP',
+                        style: TextStyle(
+                          color: Colors.white,
+                          fontWeight: FontWeight.bold,
+                        )),
+                  ),
                 ),
               ),
               const SizedBox(height: 20),

@@ -81,34 +81,41 @@ class _LoginPageState extends State {
                 ),
               ),
               const SizedBox(height: 50),
-               Container(
-                  alignment: Alignment.center,
-                  height: 50.0,
-                  width: size.width/1.2,
-                  decoration: BoxDecoration(
-                    borderRadius: BorderRadius.circular(80.0),
-                    gradient: const LinearGradient(
-                      colors: [
-                        Color.fromARGB(255, 255, 136, 34),
-                        Color.fromARGB(255, 255, 177, 41)
-                      ],
+               GestureDetector(
+                onTap: (){
+                     LoginService.LoginServiceAPI(emailController: _emailController, passwordController: _passwordController, );
+                          _emailController.clear();
+                          _passwordController.clear();
+                },
+                 child: Container(
+                    alignment: Alignment.center,
+                    height: 50.0,
+                    width: size.width/1.2,
+                    decoration: BoxDecoration(
+                      borderRadius: BorderRadius.circular(80.0),
+                      gradient: const LinearGradient(
+                        colors: [
+                          Color.fromARGB(255, 255, 136, 34),
+                          Color.fromARGB(255, 255, 177, 41)
+                        ],
+                      ),
                     ),
-                  ),
-                  child: TextButton(
-                    onPressed: (){
-                      
-                        LoginService.LoginServiceAPI(emailController: _emailController, passwordController: _passwordController, );
-                        _emailController.clear();
-                        _passwordController.clear();
-                    },
-                    child: const Text('LOGIN',
-                        style: TextStyle(
-                          color: Colors.white,
-                          fontWeight: FontWeight.bold,
-                        )),
-                  ),
-                
-              ),
+                    child: GestureDetector(
+                      onTap: (){
+                          
+                          LoginService.LoginServiceAPI(emailController: _emailController, passwordController: _passwordController, );
+                          _emailController.clear();
+                          _passwordController.clear();
+                      },
+                      child: const Text('LOGIN',
+                          style: TextStyle(
+                            color: Colors.white,
+                            fontWeight: FontWeight.bold,
+                          )),
+                    ),
+                  
+                               ),
+               ),
               const SizedBox(height: 20),
               Row(
                 crossAxisAlignment: CrossAxisAlignment.center,
