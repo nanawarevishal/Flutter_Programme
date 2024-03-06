@@ -1,7 +1,6 @@
 import 'dart:convert';
 
 import 'package:apitutorial/Model/QuizModel.dart';
-import 'package:apitutorial/Model/User_data.dart';
 import 'package:flutter/material.dart';
 import 'package:http/http.dart' as http;
 
@@ -21,7 +20,7 @@ class _HomeState extends State<Home> {
         var response = await http.get(Uri.parse("http://192.168.0.109:8080/quiz/all-quizQue/1"));
         if(response.statusCode == 200){
             var jsonData = jsonDecode(response.body.toString());
-           
+            
             for(Map<String,dynamic> index in jsonData){
                 ls.add(QuizModel.fromJson(index));
             }
