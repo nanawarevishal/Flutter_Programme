@@ -9,7 +9,7 @@ class DatabaseService{
 
     static  createDatabase()async{
         database = openDatabase(
-            join(await getDatabasesPath(),"dbtodoDB.db"),
+            join(await getDatabasesPath(),"todoDB.db"),
             version: 1,
             onCreate: (db,version)async{
                 await db.execute(''' CREATE TABLE Task(id INTEGER PRIMARY KEY AUTOINCREMENT,title TEXT,description TEXT,date TEXT)''');
