@@ -24,13 +24,13 @@ class _TodoAppState extends State {
 
   final GlobalKey<FormState> _fromKey = GlobalKey();
 
-  void submit(bool doedit, [ToDoModelClass? toDoModelObj])async {
+  void submit(bool doedit, [ToDoModelClass? toDoModelObj]) {
     if (titleController.text.trim().isNotEmpty &&
         descriptionController.text.trim().isNotEmpty &&
         dateController.text.trim().isNotEmpty) {
       if (!doedit) {
         var obj =  ToDoModelClass (
-                    id: await DatabaseService.nextId(),
+                    // id: await DatabaseService.nextId(),
                     title: titleController.text.trim(),
                     description: descriptionController.text.trim(),
                     date: dateController.text.trim(),

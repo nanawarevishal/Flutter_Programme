@@ -1,10 +1,10 @@
 class ToDoModelClass {
-  int id;
+  int? id;
   String title;
   String description;
   String date;
   ToDoModelClass({
-    required this.id,
+    this.id,
     required this.title,
     required this.description,
     required this.date,
@@ -12,7 +12,6 @@ class ToDoModelClass {
 
   Map<String,dynamic>todoMap(){
     return {
-        'id':id,
         'title':title,
         'description':description,
         'date':date,

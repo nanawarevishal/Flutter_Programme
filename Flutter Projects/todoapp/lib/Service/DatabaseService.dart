@@ -9,10 +9,10 @@ class DatabaseService{
 
     static  createDatabase()async{
         database = openDatabase(
-            join(await getDatabasesPath(),"todoDB.db"),
+            join(await getDatabasesPath(),"dbtodoDB.db"),
             version: 1,
             onCreate: (db,version)async{
-                await db.execute(''' CREATE TABLE Task(id INT PRIMARY KEY,title TEXT,description TEXT,date TEXT)''');
+                await db.execute(''' CREATE TABLE Task(id INTEGER PRIMARY KEY AUTOINCREMENT,title TEXT,description TEXT,date TEXT)''');
             }
         );
     }
@@ -35,7 +35,6 @@ class DatabaseService{
 
         for(int i=0;i<todoEntries.length;i++){
             modelObj.add(ToDoModelClass(
-                id: todoEntries[i]['id'],
                 title: todoEntries[i]['title'], 
                 description: todoEntries[i]['description'], 
                 date: todoEntries[i]['date'])
@@ -65,15 +64,15 @@ class DatabaseService{
         );
     }
 
-    static Future<int> nextId() async {
-        List<ToDoModelClass>ls = await getTaskData();
+    // static Future<int> nextId() async {
+    //     List<ToDoModelClass>ls = await getTaskData();
 
-        if(ls.isEmpty){
-            return 1;
-        }
+    //     if(ls.isEmpty){
+    //         return 1;
+    //     }
 
-        int id = ls[ls.length-1].id;
+    //     int id = ls[ls.length-1].id;
 
-        return id+1;
-    }
+    //     return id+1;
+    // }
 }
